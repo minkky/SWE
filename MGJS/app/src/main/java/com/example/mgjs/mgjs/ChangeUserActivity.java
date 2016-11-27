@@ -11,7 +11,7 @@ import android.widget.TextView;
 
 public class ChangeUserActivity extends AppCompatActivity {
     TextView id, pw, checkpw;
-
+    Button yes, no;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -19,6 +19,8 @@ public class ChangeUserActivity extends AppCompatActivity {
         id = (TextView)findViewById(R.id.changeuser_id);
         pw = (TextView)findViewById(R.id.changeuser_pw);
         checkpw = (TextView)findViewById(R.id.changeuser_pwcheck);
+        yes = (Button)findViewById(R.id.changeuser_ybtn); yes.setText("확인");
+        no = (Button)findViewById(R.id.changeuser_nbtn); no.setText("취소");
         /*db에서 불러온 값들을 id, pw, checkpw에 각각 저장해야함.
         * id.setText(); pw.setText(); checkpw.setText();*/
     }
