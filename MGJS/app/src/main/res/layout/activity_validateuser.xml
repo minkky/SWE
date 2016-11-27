@@ -10,4 +10,37 @@
     android:paddingTop="@dimen/activity_vertical_margin"
     tools:context="com.example.mgjs.mgjs.ValidateUserActivity">
 
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_centerVertical="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true">
+
+        <TextView
+            android:text="Input your password"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/validateuser_tv"
+            android:textStyle="normal|bold"
+            android:textAlignment="center"
+            android:textSize="24sp"
+            android:layout_marginBottom="40dp" />
+
+        <EditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:inputType="textPassword"
+            android:ems="10"
+            android:id="@+id/validateuser_pw"
+            android:textAlignment="center" />
+
+        <Button
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/validateuser_btn"
+            android:onClick="validateClicked"
+            android:layout_marginTop="30dp" />
+    </LinearLayout>
 </RelativeLayout>
