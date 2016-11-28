@@ -40,7 +40,7 @@
             android:layout_alignParentEnd="true"
             android:layout_above="@+id/listView2"
             android:layout_weight="1"
-            android:onClick="note_add"/>
+            android:onClick="onAddNoteClicked"/>
     </LinearLayout>
 
     <ListView
