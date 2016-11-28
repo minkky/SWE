@@ -49,7 +49,7 @@ public class ChangeUserActivity extends AppCompatActivity {
         checkpw.setText(loginpw);
     }
 
-    public void changeuserClicked(View view){
+    public void onChangeUserInfoClicked(View view){
 
         AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(this);
         /*변경된 값을 불러오는지 확인하기*/

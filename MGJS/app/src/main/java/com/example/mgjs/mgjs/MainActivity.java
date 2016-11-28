@@ -35,31 +35,12 @@ public class MainActivity extends AppCompatActivity
         setSupportActionBar(toolbar);
         schedule = (TextView)findViewById(R.id.main_scheduletv);
         schedule.setText("스케쥴 관리");
-        schedule.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(MainActivity.this, ScheduleActivity.class);
-                startActivity(intent);
-            }
-        });
+
         phonebook = (TextView)findViewById(R.id.main_phonebooktv);
         phonebook.setText("전화번호부");
-        phonebook.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(MainActivity.this, PhoneBookActivity.class);
-                startActivity(intent);
-            }
-        });
+
         note = (TextView)findViewById(R.id.main_notetv);
         note.setText("메모");
-        note.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(MainActivity.this, NoteActivity.class);
-                startActivity(intent);
-            }
-        });
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
@@ -87,6 +68,21 @@ public class MainActivity extends AppCompatActivity
 
         navigationView.setNavigationItemSelectedListener(this);
 
+    }
+
+    public void onScheduleClicked(View view){
+        Intent intent = new Intent(MainActivity.this, ScheduleActivity.class);
+        startActivity(intent);
+    }
+
+    public void onPhoneBookClicked(View view){
+        Intent intent = new Intent(MainActivity.this, PhoneBookActivity.class);
+        startActivity(intent);
+    }
+
+    public void onNoteClicked(View view){
+        Intent intent = new Intent(MainActivity.this, NoteActivity.class);
+        startActivity(intent);
     }
 
     @Override

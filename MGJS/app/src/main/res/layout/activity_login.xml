@@ -92,7 +92,7 @@
                 android:id="@+id/login_btn"
                 android:layout_weight="1"
                 android:textSize="24sp"
-                android:onClick="loginClicked" />
+                android:onClick="onLoginBtnClicked" />
         </LinearLayout>
     </LinearLayout>
 

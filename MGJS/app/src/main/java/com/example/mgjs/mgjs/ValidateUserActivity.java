@@ -40,8 +40,14 @@ public class ValidateUserActivity extends AppCompatActivity {
 
 
     }
-    public void validateClicked(View view){
-        if(et.getText().toString().equals(loginpw)){
+
+    public boolean matchPassword(){
+        if(et.getText().toString().equals(loginpw))
+            return true;
+        else return false;
+        }
+    public void onPasswordCheckClicked(View view){
+        if(matchPassword()){
             Intent intent = new Intent(ValidateUserActivity.this, ChangeUserActivity.class);
             startActivity(intent);
         }

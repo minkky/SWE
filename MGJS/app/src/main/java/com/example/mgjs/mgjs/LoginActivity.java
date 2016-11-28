@@ -41,7 +41,7 @@ public class LoginActivity extends AppCompatActivity {
 
     }
 
-    public void loginClicked(View view){
+    public void onLoginBtnClicked(View view){
         if(id.getText().toString().equals(loginid) && pw.getText().toString().equals(loginpw)){
             Toast.makeText(getApplicationContext(),"로그인 성공",Toast.LENGTH_SHORT).show();
             Intent intent = new Intent(LoginActivity.this, MainActivity.class);
