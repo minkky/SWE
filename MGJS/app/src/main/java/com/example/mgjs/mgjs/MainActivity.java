@@ -1,6 +1,9 @@
 package com.example.mgjs.mgjs;
 
 import android.content.Intent;
+import android.database.Cursor;
+import android.database.sqlite.SQLiteDatabase;
+import android.database.sqlite.SQLiteException;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
@@ -19,6 +22,9 @@ import android.widget.Toast;
 public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
     TextView schedule, phonebook, note, shortcut_id;
+    LoginDBHelper logindbhelper;
+    SQLiteDatabase logindb;
+    String loginid;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -61,11 +67,24 @@ public class MainActivity extends AppCompatActivity
         drawer.setDrawerListener(toggle);
         toggle.syncState();
 
-        shortcut_id = (TextView)findViewById(R.id.shortcut_id);
-        if(shortcut_id != null)
-            Toast.makeText(getApplicationContext(), shortcut_id.getText().toString(), Toast.LENGTH_SHORT).show();
+        logindbhelper = new LoginDBHelper(this);
+        try {
+            logindb = logindbhelper.getWritableDatabase();
+        }catch (SQLiteException ex) {
+            logindb = logindbhelper.getReadableDatabase();
+        }
+
+        Cursor cursor = logindb.rawQuery("select * from login;",null);
+        while (cursor.moveToNext()) {
+            loginid = cursor.getString(1);
+        }
 
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
+        View shortcurview = navigationView.getHeaderView(0);
+        shortcut_id = (TextView)shortcurview.findViewById(R.id.shortcut_id);
+        if(shortcut_id != null)
+            shortcut_id.setText(loginid);
+
         navigationView.setNavigationItemSelectedListener(this);
 
     }
@@ -78,6 +97,11 @@ public class MainActivity extends AppCompatActivity
         } else {
             super.onBackPressed();
         }
+    }
+
+    public void loginidClicked(View view){
+        Intent intent = new Intent(MainActivity.this, ValidateUserActivity.class);
+        startActivity(intent);
     }
 
     @SuppressWarnings("StatementWithEmptyBody")
