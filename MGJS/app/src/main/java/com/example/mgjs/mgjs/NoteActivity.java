@@ -16,14 +16,10 @@ public class NoteActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_note);
         note_addButton = (ImageButton)findViewById(R.id.note_addButton);
-        note_addButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                intent = new Intent(NoteActivity.this, Add_NoteActivity.class);
-                startActivity(intent);
-            }
-        });
+    }
 
-
+    public void note_add(View view){
+        intent = new Intent(NoteActivity.this, Add_NoteActivity.class);
+        startActivity(intent);
     }
 }
