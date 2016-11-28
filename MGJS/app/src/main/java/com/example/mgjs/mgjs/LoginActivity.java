@@ -1,15 +1,14 @@
 package com.example.mgjs.mgjs;
 
-import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteException;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.app.AlertDialog;
+import android.support.v7.app.AppCompatActivity;
 import android.view.View;
-import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
@@ -42,6 +41,7 @@ public class LoginActivity extends AppCompatActivity {
     }
 
     public void loginClicked(View view){
+
         if(id.getText().toString().equals(loginid) && pw.getText().toString().equals(loginpw)){
             Toast.makeText(getApplicationContext(),"로그인 성공",Toast.LENGTH_SHORT).show();
             Intent intent = new Intent(LoginActivity.this, MainActivity.class);
@@ -61,5 +61,6 @@ public class LoginActivity extends AppCompatActivity {
             AlertDialog alertDialog = alertDialogBuilder.create();
             alertDialog.show();
         }
+
     }
 }
