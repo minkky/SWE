@@ -56,7 +56,7 @@ public class ChangeUserActivity extends AppCompatActivity {
         String str_id = id.getText().toString();
         String str_pw = pw.getText().toString();
         String str_checkpw = checkpw.getText().toString();
-        
+
         if(str_pw.equals(str_checkpw)) {
             /*db에 저장하는 부분이 필요함*/
             ContentValues passwords = new ContentValues();
