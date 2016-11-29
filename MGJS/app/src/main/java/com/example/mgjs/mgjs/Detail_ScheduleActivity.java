@@ -20,6 +20,7 @@ public class Detail_ScheduleActivity extends AppCompatActivity {
     TextView tv_year, tv_month, tv_day, tv_content;
     int schedule_id, str_year, str_month, str_day;
     String str_content;
+    View v;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -40,10 +41,10 @@ public class Detail_ScheduleActivity extends AppCompatActivity {
         tv_day = (TextView)findViewById(R.id.schedule_day);
         tv_content = (TextView)findViewById(R.id.schedule_content);
 
-        //showDetailSchedule(); 여기 파라미터 추가
+        showDetailSchedule();// 여기 파라미터 추가
     }
 
-    public void showDetailSchedule(View v){
+    public void showDetailSchedule(){
         Cursor cursor = scheduledb.rawQuery("SELECT * FROM Schedule where schedule_id = " + schedule_id, null);
         while (cursor.moveToNext()) {
             str_content = cursor.getString(1);
@@ -64,8 +65,14 @@ public class Detail_ScheduleActivity extends AppCompatActivity {
                 new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface arg0, int arg1) {
-                        String deleteSql = "DELETE FROM Schedule WHERE schedule_id = " + schedule_id;
+                        String deleteSql = "DELETE FROM Schedule WHERE schedule_id = " + schedule_id+";";
                         scheduledb.execSQL(deleteSql);
+                        Cursor cursor = scheduledb.rawQuery("SELECT schedule_id FROM Schedule", null);
+                        int i =1;
+                        while (cursor.moveToNext()){
+                            scheduledb.execSQL("UPDATE Schedule SET schedule_id="+i+";");
+                            i++;
+                        }
                         Intent intent = new Intent(Detail_ScheduleActivity.this, ScheduleActivity.class);
                         startActivity(intent);
                     }

@@ -37,7 +37,7 @@ public class Add_ScheduleActivity extends AppCompatActivity {
 
         scheduleContent = (EditText)findViewById(R.id.schedule_add_content);
         scheduleContent.setText("");
-        content = scheduleContent.getText().toString();
+
 
 
         String[] yearStr = getResources().getStringArray(R.array.schedule_year);
@@ -97,10 +97,10 @@ public class Add_ScheduleActivity extends AppCompatActivity {
 
     public void saveSchedule(View v){
 
+        content = scheduleContent.getText().toString();
+
         scheduledb.execSQL("INSERT INTO Schedule VALUES(null,'"+content+"',"+schedule_year+","+schedule_month+","+schedule_day+");");
-
         scheduledb = sDBhelper.getReadableDatabase();
-
         Cursor cursor = scheduledb.rawQuery("SELECT * FROM Schedule", null);
         String str = "";
         while (cursor.moveToNext()){
@@ -108,7 +108,6 @@ public class Add_ScheduleActivity extends AppCompatActivity {
         }
 
         Toast.makeText(getApplicationContext(),str, Toast.LENGTH_LONG).show();//나중 삭제
-
 
         AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(this);
         alertDialogBuilder.setMessage("Successfully Saved!");
