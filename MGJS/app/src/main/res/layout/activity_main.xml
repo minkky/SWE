@@ -13,4 +13,45 @@
     tools:context="com.example.mgjs.mgjs.MainActivity"
     tools:showIn="@layout/app_bar_main">
 
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_centerVertical="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true">
+
+        <TextView
+            android:text="Schedule"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/main_scheduletv"
+            android:textStyle="normal|bold"
+            android:textSize="30sp"
+            android:layout_marginTop="20dp"
+            android:layout_marginBottom="20dp"
+            android:textAlignment="center" />
+
+        <TextView
+            android:text="PhoneBook"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/main_phonebooktv"
+            android:textStyle="normal|bold"
+            android:textSize="30sp"
+            android:layout_marginTop="20dp"
+            android:layout_marginBottom="20dp"
+            android:textAlignment="center" />
+
+        <TextView
+            android:text="Memo"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/main_notetv"
+            android:textStyle="normal|bold"
+            android:textSize="30sp"
+            android:layout_marginTop="20dp"
+            android:layout_marginBottom="20dp"
+            android:textAlignment="center" />
+    </LinearLayout>
 </RelativeLayout>
