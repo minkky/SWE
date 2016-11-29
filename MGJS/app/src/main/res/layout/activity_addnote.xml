@@ -39,7 +39,7 @@
         android:layout_alignParentStart="true"
         android:id="@+id/addnote_saveButton"
         android:background="?android:attr/colorBackground"
-        android:onClick="addnote_save"/>
+        android:onClick="saveNote"/>
 
     <Button
         android:text="취소하기"
@@ -52,5 +52,5 @@
         android:layout_toEndOf="@+id/addnote_saveButton"
         android:layout_marginLeft="10dp"
         android:layout_marginStart="10dp"
-        android:onClick="addnote_cancel"/>
+        android:onClick="cancelNote"/>
 </RelativeLayout>

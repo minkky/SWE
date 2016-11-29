@@ -17,9 +17,12 @@ public class ScheduleActivity extends AppCompatActivity {
         schedule_addButton = (ImageButton)findViewById(R.id.schedule_addButton);
     }
 
-   public void schedule_add(View view){
+   public void onAddScheduleClicked(View v){
        intent = new Intent(ScheduleActivity.this, Add_ScheduleActivity.class);
        startActivity(intent);
     }
+
+    void showSchedule(View v){};
+    void callDetailScheduleO(View v){};
 
 }
