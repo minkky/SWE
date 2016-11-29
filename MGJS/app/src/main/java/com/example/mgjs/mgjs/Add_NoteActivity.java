@@ -15,7 +15,7 @@ public class Add_NoteActivity extends AppCompatActivity {
     Button addnote_saveButton, addnote_cancelButton;
     EditText addnote_contentOfNote;
     Intent intent;
-    NoteDBHelper noteDbHelper;
+    NoteDBHelper noteDBHelper;
     SQLiteDatabase noteDB;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -24,17 +24,17 @@ public class Add_NoteActivity extends AppCompatActivity {
         addnote_saveButton = (Button)findViewById(R.id.addnote_saveButton);
         addnote_cancelButton = (Button)findViewById(R.id.addnote_cancelButton);
         addnote_contentOfNote = (EditText)findViewById(R.id.addnote_contentOfNote);
-        noteDbHelper = new NoteDBHelper(this);
+        noteDBHelper = new NoteDBHelper(this);
         try{
-            noteDB = noteDbHelper.getWritableDatabase();
+            noteDB = noteDBHelper.getWritableDatabase();
         }catch (SQLiteException ex){
-            noteDB = noteDbHelper.getReadableDatabase();
+            noteDB = noteDBHelper.getReadableDatabase();
         }
     }
 
     public void saveNote(View v){
         String noteContent = addnote_contentOfNote.getText().toString();
-        noteDB.execSQL("INSERT INTO contacts VALUES(null, '"
+        noteDB.execSQL("INSERT INTO note VALUES(null, '"
         +noteContent+"');");
         Toast.makeText(getApplicationContext(),"노트 추가가 완료되었습니다.",Toast.LENGTH_SHORT).show();
         addnote_contentOfNote.setText("");
