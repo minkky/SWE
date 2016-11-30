@@ -34,8 +34,7 @@ public class Add_NoteActivity extends AppCompatActivity {
 
     public void saveNote(View v){
         String noteContent = addnote_contentOfNote.getText().toString();
-        noteDB.execSQL("INSERT INTO note VALUES(null, '"
-        +noteContent+"');");
+        noteDB.execSQL("INSERT INTO note VALUES(null, '" +noteContent+"');");
         Toast.makeText(getApplicationContext(),"노트 추가가 완료되었습니다.",Toast.LENGTH_SHORT).show();
         addnote_contentOfNote.setText("");
     }
