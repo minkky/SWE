@@ -10,4 +10,47 @@
     android:paddingTop="@dimen/activity_vertical_margin"
     tools:context="com.example.mgjs.mgjs.Add_NoteActivity">
 
+    <TextView
+        android:text="추가할 내용을 입력해주세요."
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:id="@+id/addnote_titleTextView"
+        android:textSize="24sp" />
+
+    <EditText
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:inputType="text"
+        android:ems="10"
+        android:id="@+id/addnote_contentOfNote"
+        android:layout_below="@+id/addnote_titleTextView"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true" />
+
+    <Button
+        android:text="저장하기"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/addnote_contentOfNote"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:id="@+id/addnote_saveButton"
+        android:background="?android:attr/colorBackground"
+        android:onClick="addnote_save"/>
+
+    <Button
+        android:text="취소하기"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/addnote_cancelButton"
+        android:background="?android:attr/colorBackground"
+        android:layout_below="@+id/addnote_contentOfNote"
+        android:layout_toRightOf="@+id/addnote_saveButton"
+        android:layout_toEndOf="@+id/addnote_saveButton"
+        android:layout_marginLeft="10dp"
+        android:layout_marginStart="10dp"
+        android:onClick="addnote_cancel"/>
 </RelativeLayout>

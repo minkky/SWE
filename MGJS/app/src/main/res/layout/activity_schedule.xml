@@ -33,12 +33,13 @@
             android:id="@+id/schedule_addButton"
             android:elevation="0dp"
             android:textAllCaps="false"
-            android:background="#fafafa"
+            android:background="?android:attr/colorBackground"
             android:layout_alignParentTop="true"
             android:layout_alignParentRight="true"
             android:layout_alignParentEnd="true"
             android:layout_weight="1"
-            android:layout_width="wrap_content" />
+            android:layout_width="wrap_content"
+            android:onClick="schedule_add"/>
 
     </LinearLayout>
 
