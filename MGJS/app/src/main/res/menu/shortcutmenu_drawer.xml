@@ -10,7 +10,7 @@
             android:title="PhoneBook" />
         <item
             android:id="@+id/shortcut_note"
-            android:title="Memo" />
+            android:title="Note" />
     </group>
 
 </menu>
