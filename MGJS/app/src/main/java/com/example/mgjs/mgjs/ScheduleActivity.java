@@ -1,4 +1,4 @@
-package com.example.mgjs.mgjs;
+﻿package com.example.mgjs.mgjs;
 
 import android.app.ListActivity;
 import android.content.Intent;
