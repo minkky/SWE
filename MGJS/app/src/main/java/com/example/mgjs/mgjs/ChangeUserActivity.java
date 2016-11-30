@@ -49,6 +49,11 @@ public class ChangeUserActivity extends AppCompatActivity {
         checkpw.setText(loginpw);
     }
 
+    public boolean checkEqualPassword(String password, String check_password){
+        if(password.equals(check_password)) return true;
+        else return false;
+    }
+
     public void onChangeUserInfoClicked(View view){
 
         AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(this);
@@ -57,11 +62,8 @@ public class ChangeUserActivity extends AppCompatActivity {
         String str_pw = pw.getText().toString();
         String str_checkpw = checkpw.getText().toString();
 
-        if(str_pw.equals(str_checkpw)) {
+        if( checkEqualPassword(str_pw,str_checkpw) ) {
             /*db에 저장하는 부분이 필요함*/
-            ContentValues passwords = new ContentValues();
-            passwords.put("login_pw",str_pw);
-
             logindb.execSQL("INSERT INTO Login VALUES(null,'"+str_id+"','"+str_pw+"');");
 
             alertDialogBuilder.setMessage("정보가 변경되었습니다!");
@@ -88,7 +90,7 @@ public class ChangeUserActivity extends AppCompatActivity {
         alertDialog.show();
     }
 
-    public void nochangeuserClicked(View view){
+    public void onCancleChangeUserInfoClicked(View view){
         Intent intent = new Intent(ChangeUserActivity.this, MainActivity.class);
         startActivity(intent);
     }

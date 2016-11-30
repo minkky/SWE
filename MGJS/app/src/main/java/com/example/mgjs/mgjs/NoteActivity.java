@@ -39,8 +39,6 @@ public class NoteActivity extends ListActivity {
             public boolean onItemLongClick(AdapterView<?> parent, View view, int position, long id){
                 deleteNote(position);
                 return true;
-
-
             }
         });
     }
