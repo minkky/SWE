@@ -110,7 +110,7 @@ public class MainActivity extends AppCompatActivity
             intent = new Intent(MainActivity.this, ScheduleActivity.class);
         } else if (id == R.id.shortcut_phonebook) {
             intent = new Intent(MainActivity.this, PhoneBookActivity.class);
-        } else if (id == R.id.shortcut_memo) {
+        } else if (id == R.id.shortcut_note) {
             intent = new Intent(MainActivity.this, NoteActivity.class);
         }
         startActivity(intent);

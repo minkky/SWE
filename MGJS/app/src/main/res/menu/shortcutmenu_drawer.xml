@@ -9,7 +9,7 @@
             android:id="@+id/shortcut_phonebook"
             android:title="PhoneBook" />
         <item
-            android:id="@+id/shortcut_memo"
+            android:id="@+id/shortcut_note"
             android:title="Memo" />
     </group>
 
