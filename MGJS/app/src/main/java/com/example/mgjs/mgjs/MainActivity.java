@@ -33,14 +33,10 @@ public class MainActivity extends AppCompatActivity
 
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
-        schedule = (TextView)findViewById(R.id.main_scheduletv);
-        schedule.setText("스케쥴 관리");
 
-        phonebook = (TextView)findViewById(R.id.main_phonebooktv);
-        phonebook.setText("전화번호부");
-
-        note = (TextView)findViewById(R.id.main_notetv);
-        note.setText("메모");
+        schedule = (TextView)findViewById(R.id.main_scheduleTextView);
+        phonebook = (TextView)findViewById(R.id.main_phonebookTextView);
+        note = (TextView)findViewById(R.id.main_noteTextView);
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
