@@ -36,7 +36,7 @@ public class ScheduleActivity extends ListActivity {
             public void onItemClick(AdapterView<?> parent,View view, int position,long id){
                 //scheduleDetail로 넘어가는 함수 쓰기.
                 intent = new Intent(ScheduleActivity.this, Detail_ScheduleActivity.class);
-                intent.putExtra("id",id);
+                intent.putExtra("id",position);
                 startActivity(intent);
         }});
     }

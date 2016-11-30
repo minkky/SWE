@@ -45,7 +45,7 @@ public class Detail_ScheduleActivity extends AppCompatActivity {
     }
 
     public void showDetailSchedule(){
-        Cursor cursor = scheduledb.rawQuery("SELECT * FROM Schedule where schedule_id = " + schedule_id, null);
+        Cursor cursor = scheduledb.rawQuery("SELECT * FROM Schedule where _id = " + schedule_id, null);
         while (cursor.moveToNext()) {
             str_content = cursor.getString(1);
             str_year = cursor.getInt(2);
@@ -65,12 +65,12 @@ public class Detail_ScheduleActivity extends AppCompatActivity {
                 new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface arg0, int arg1) {
-                        String deleteSql = "DELETE FROM Schedule WHERE schedule_id = " + schedule_id+";";
+                        String deleteSql = "DELETE FROM Schedule WHERE _id = " + schedule_id+";";
                         scheduledb.execSQL(deleteSql);
-                        Cursor cursor = scheduledb.rawQuery("SELECT schedule_id FROM Schedule", null);
+                        Cursor cursor = scheduledb.rawQuery("SELECT _id FROM Schedule", null);
                         int i =1;
                         while (cursor.moveToNext()){
-                            scheduledb.execSQL("UPDATE Schedule SET schedule_id="+i+";");
+                            scheduledb.execSQL("UPDATE Schedule SET _id="+i+";");
                             i++;
                         }
                         Intent intent = new Intent(Detail_ScheduleActivity.this, ScheduleActivity.class);
