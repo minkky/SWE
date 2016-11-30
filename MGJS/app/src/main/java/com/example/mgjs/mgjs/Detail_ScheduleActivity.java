@@ -15,7 +15,7 @@ public class Detail_ScheduleActivity extends AppCompatActivity {
 
     ScheduleDBHelper sDBhelper;
     SQLiteDatabase scheduledb;
-    //ScheduleActivity에서 scedule_id값을 넘겨주어야 함!!
+    //ScheduleActivity에서 schedule_id값을 넘겨주어야 함!!
 
     TextView tv_year, tv_month, tv_day, tv_content;
     int schedule_id, str_year, str_month, str_day;
