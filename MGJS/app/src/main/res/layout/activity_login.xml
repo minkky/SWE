@@ -17,7 +17,8 @@
         android:layout_height="wrap_content"
         android:layout_centerVertical="true"
         android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true">
+        android:layout_alignParentStart="true"
+        android:id="@+id/linearLayout">
 
         <ImageView
             android:layout_width="match_parent"
@@ -95,6 +96,15 @@
                 android:onClick="loginClicked" />
         </LinearLayout>
     </LinearLayout>
+
+    <Button
+        android:text="Button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/linearLayout"
+        android:layout_marginTop="27dp"
+        android:id="@+id/button4"
+        android:onClick="onon" />
 
 
 </RelativeLayout>

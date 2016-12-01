@@ -62,7 +62,11 @@ public class LoginActivity extends AppCompatActivity {
         }
     }
 
+    public void onon(View v){
+        Intent intent = new Intent(this, Add_PhoneNumberActivity.class);
+        startActivity(intent);
 
+    }
 
 
 }
