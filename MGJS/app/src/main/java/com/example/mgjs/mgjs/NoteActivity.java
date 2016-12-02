@@ -1,10 +1,12 @@
 package com.example.mgjs.mgjs;
 
+import android.app.AlertDialog;
 import android.app.ListActivity;
 import android.content.Intent;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ImageButton;
@@ -29,14 +31,14 @@ public class NoteActivity extends ListActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_note);
         noteDBHelper = new NoteDBHelper(this);
-        note_addButton = (ImageButton)findViewById(R.id.note_addButton);
+        note_addButton = (ImageButton)findViewById(R.id.note_addbutton);
         note_listView = getListView();
         showNote();
-
-
         note_listView.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener(){
             @Override
             public boolean onItemLongClick(AdapterView<?> parent, View view, int position, long id){
+
+                Log.d("delete function call",position+"");
                 deleteNote(position);
                 return true;
             }
@@ -59,7 +61,8 @@ public class NoteActivity extends ListActivity {
         ArrayList<HashMap<String, String>> noteList;
         noteList = getNoteList();
         if (noteList.size()!=0){
-            ListAdapter noteListAdapter = new SimpleAdapter(NoteActivity.this,noteList,R.layout.note_entry,new String[] {"id","content"},new int[] {R.id.noteNumber,R.id.noteContents});
+            ListAdapter noteListAdapter = new SimpleAdapter(NoteActivity.this,noteList,R.layout.note_entry,
+                    new String[] {"note_id","note_content"},new int[] {R.id.notenumber,R.id.notecontents});
             setListAdapter(noteListAdapter);
         }else {
             Toast.makeText(this,"note is not exist!",Toast.LENGTH_SHORT).show();

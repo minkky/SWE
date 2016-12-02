@@ -21,9 +21,9 @@ public class Add_NoteActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_addnote);
-        addnote_saveButton = (Button)findViewById(R.id.addnote_saveButton);
-        addnote_cancelButton = (Button)findViewById(R.id.addnote_cancelButton);
-        addnote_contentOfNote = (EditText)findViewById(R.id.addnote_contentOfNote);
+        addnote_saveButton = (Button)findViewById(R.id.addnote_savebutton);
+        addnote_cancelButton = (Button)findViewById(R.id.addnote_cancelbutton);
+        addnote_contentOfNote = (EditText)findViewById(R.id.addnote_contentofnote);
         noteDBHelper = new NoteDBHelper(this);
         try{
             noteDB = noteDBHelper.getWritableDatabase();
@@ -32,18 +32,17 @@ public class Add_NoteActivity extends AppCompatActivity {
         }
     }
 
-    public void saveNote(View v){
+    public void saveNote(View view){
         String noteContent = addnote_contentOfNote.getText().toString();
         noteDB.execSQL("INSERT INTO note VALUES(null, '" +noteContent+"');");
-        Toast.makeText(getApplicationContext(),"노트 추가가 완료되었습니다.",Toast.LENGTH_SHORT).show();
+        Toast.makeText(getApplicationContext(),"Add note complete.",Toast.LENGTH_SHORT).show();
         addnote_contentOfNote.setText("");
-    }
-
-    public void cancelNote(View view){
-        addnote_cancelButton.setText("");
         intent = new Intent(Add_NoteActivity.this, NoteActivity.class);
         startActivity(intent);
     }
 
-
+    public void cancelNote(View view) {
+        Toast.makeText(getApplicationContext(),"Add note is canceled.",Toast.LENGTH_SHORT).show();
+        this.finish();
+    }
 }

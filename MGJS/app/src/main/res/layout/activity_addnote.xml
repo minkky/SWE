@@ -11,13 +11,13 @@
     tools:context="com.example.mgjs.mgjs.Add_NoteActivity">
 
     <TextView
-        android:text="추가할 내용을 입력해주세요."
+        android:text="Please write note what you want."
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentTop="true"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
-        android:id="@+id/addnote_titleTextView"
+        android:id="@+id/addnote_titletextview"
         android:textSize="24sp" />
 
     <EditText
@@ -25,31 +25,31 @@
         android:layout_height="wrap_content"
         android:inputType="text"
         android:ems="10"
-        android:id="@+id/addnote_contentOfNote"
-        android:layout_below="@+id/addnote_titleTextView"
+        android:id="@+id/addnote_contentofnote"
+        android:layout_below="@+id/addnote_titletextview"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true" />
 
     <Button
-        android:text="저장하기"
+        android:text="Save"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/addnote_contentOfNote"
+        android:layout_below="@+id/addnote_contentofnote"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
-        android:id="@+id/addnote_saveButton"
+        android:id="@+id/addnote_savebutton"
         android:background="?android:attr/colorBackground"
         android:onClick="saveNote"/>
 
     <Button
-        android:text="취소하기"
+        android:text="cancel"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:id="@+id/addnote_cancelButton"
+        android:id="@+id/addnote_cancelbutton"
         android:background="?android:attr/colorBackground"
-        android:layout_below="@+id/addnote_contentOfNote"
-        android:layout_toRightOf="@+id/addnote_saveButton"
-        android:layout_toEndOf="@+id/addnote_saveButton"
+        android:layout_below="@+id/addnote_contentofnote"
+        android:layout_toRightOf="@+id/addnote_savebutton"
+        android:layout_toEndOf="@+id/addnote_savebutton"
         android:layout_marginLeft="10dp"
         android:layout_marginStart="10dp"
         android:onClick="cancelNote"/>
