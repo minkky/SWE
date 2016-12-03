@@ -51,10 +51,29 @@ public class NoteActivity extends ListActivity {
     }
 
     public void deleteNote(int note_Id){
-        SQLiteDatabase noteDB = noteDBHelper.getWritableDatabase();
-        noteDB.delete("note","note_id= ?", new String[] {String.valueOf(note_Id)});
-        noteDB.close();
 
+        SQLiteDatabase noteDB = noteDBHelper.getWritableDatabase();
+
+        Cursor cursor = noteDB.rawQuery("SELECT note_id FROM note", null);
+        if (ishaveContent(cursor)) {
+            int i = cursor.getInt(cursor.getColumnIndex("note_id"));;
+                for (int j = 0;j<note_Id;)
+                {
+                    if (cursor.moveToNext()){
+                        i = cursor.getInt(cursor.getColumnIndex("note_id"));
+                        j++;
+                    }
+                }
+            noteDB.delete("note","note_id= ?", new String[] {String.valueOf(i)});
+        }
+
+
+
+        noteDB.close();
+    }
+
+    boolean ishaveContent(Cursor cursor){
+        return cursor.moveToFirst();
     }
 
     public void showNote(){
@@ -62,7 +81,7 @@ public class NoteActivity extends ListActivity {
         noteList = getNoteList();
         if (noteList.size()!=0){
             ListAdapter noteListAdapter = new SimpleAdapter(NoteActivity.this,noteList,R.layout.note_entry,
-                    new String[] {"note_id","note_content"},new int[] {R.id.notenumber,R.id.notecontents});
+                    new String[] {"note_content"},new int[] {R.id.notecontents});
             setListAdapter(noteListAdapter);
         }else {
             Toast.makeText(this,"note is not exist!",Toast.LENGTH_SHORT).show();

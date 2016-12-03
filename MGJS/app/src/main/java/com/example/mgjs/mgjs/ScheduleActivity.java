@@ -36,7 +36,7 @@ public class ScheduleActivity extends ListActivity {
             @Override
             public void onItemClick(AdapterView<?> parent,View view, int position,long id){
                 intent = new Intent(ScheduleActivity.this, Detail_ScheduleActivity.class);
-                intent.putExtra("id",position);
+                intent.putExtra("id",position+1);
                 startActivity(intent);
         }});
     }
