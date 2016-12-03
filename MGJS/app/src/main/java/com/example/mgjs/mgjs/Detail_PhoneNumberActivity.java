@@ -63,11 +63,11 @@ public class Detail_PhoneNumberActivity extends AppCompatActivity {
        //  position = intent.getIntExtra("position",1);
        // int position = intent.getIntExtra("position",1);
         // position = intent.getIntExtra("position",1);
-        String data=intent.getStringExtra("data");
+        int i = getIntent().getExtras().getInt("position");
 
 
 
-        Toast.makeText(Detail_PhoneNumberActivity.this, ""+data, Toast.LENGTH_SHORT).show();
+        Toast.makeText(Detail_PhoneNumberActivity.this, ""+i, Toast.LENGTH_SHORT).show();
 
 
     }
@@ -77,9 +77,9 @@ public class Detail_PhoneNumberActivity extends AppCompatActivity {
         Toast.makeText(Detail_PhoneNumberActivity.this, position, Toast.LENGTH_SHORT).show();
 
 
-     // mDatas.remove(position);
+     //  mDatas.remove(position);
 
-      //  adapter.notifyDataSetChanged();
+       // adapter.notifyDataSetChanged();
 
     }
 

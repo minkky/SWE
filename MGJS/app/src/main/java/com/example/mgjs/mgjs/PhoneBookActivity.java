@@ -42,7 +42,7 @@ public class PhoneBookActivity extends Activity {
         while (cursor.moveToNext()) {
             str = "NAME :\t\t\t\t\t\t\t\t\t\t"+ cursor.getString(1) + "\n" + "PHONE : \t\t\t\t\t\t\t" + cursor.getString(2);
             //str = "[NAME]\t\t\t\t\t\t\t\t\t\t" + cursor.getString(1);
-            Toast.makeText(PhoneBookActivity.this, cursor.getString(1), Toast.LENGTH_SHORT).show();
+            //Toast.makeText(PhoneBookActivity.this, cursor.getString(1), Toast.LENGTH_SHORT).show();
             mDatas.add(str);
         }
 
@@ -77,7 +77,7 @@ public class PhoneBookActivity extends Activity {
                // intent.putExtra("phonebook", mDatas.get(position));
 
 
-                intent.putExtra("position", data);
+                intent.putExtra("position", position);
 
 
                 startActivity(intent);
