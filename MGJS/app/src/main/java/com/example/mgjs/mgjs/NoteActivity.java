@@ -62,14 +62,18 @@ public class NoteActivity extends ListActivity {
         });
     }
 
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        showNote();
+    }
+
     public void onAddNoteClicked(View v){
         intent = new Intent(NoteActivity.this, Add_NoteActivity.class);
-        startActivity(intent);
+        startActivityForResult(intent,1);
     }
 
     public void deleteNote(int note_Id){
-
-
         SQLiteDatabase noteDB = noteDBHelper.getWritableDatabase();
 
         Cursor cursor = noteDB.rawQuery("SELECT note_id FROM note", null);
@@ -97,14 +101,13 @@ public class NoteActivity extends ListActivity {
     public void showNote(){
         ArrayList<HashMap<String, String>> noteList;
         noteList = getNoteList();
-        if (noteList.size()!=0){
             ListAdapter noteListAdapter = new SimpleAdapter(NoteActivity.this,noteList,R.layout.note_entry,
                     new String[] {"note_content"},new int[] {R.id.notecontents});
             setListAdapter(noteListAdapter);
-        }else {
+        if (noteList.size()==0)
             Toast.makeText(this,"note is not exist!",Toast.LENGTH_SHORT).show();
         }
-            }
+
 
     public ArrayList<HashMap<String,String>> getNoteList(){
         SQLiteDatabase noteDB = noteDBHelper.getReadableDatabase();

@@ -19,12 +19,14 @@ public class Add_NoteActivity extends AppCompatActivity {
     SQLiteDatabase noteDB;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_addnote);
         addnote_saveButton = (Button)findViewById(R.id.addnote_savebutton);
         addnote_cancelButton = (Button)findViewById(R.id.addnote_cancelbutton);
         addnote_contentOfNote = (EditText)findViewById(R.id.addnote_contentofnote);
         noteDBHelper = new NoteDBHelper(this);
+        intent = getIntent();
         try{
             noteDB = noteDBHelper.getWritableDatabase();
         }catch (SQLiteException ex){
@@ -37,8 +39,10 @@ public class Add_NoteActivity extends AppCompatActivity {
         noteDB.execSQL("INSERT INTO note VALUES(null, '" +noteContent+"');");
         Toast.makeText(getApplicationContext(),"Add note complete.",Toast.LENGTH_SHORT).show();
         addnote_contentOfNote.setText("");
-        intent = new Intent(Add_NoteActivity.this, NoteActivity.class);
-        startActivity(intent);
+        intent = new Intent();
+        intent.putExtra("data","data");
+        setResult(RESULT_OK,intent);
+        finish();
     }
 
     public void cancelNote(View view) {

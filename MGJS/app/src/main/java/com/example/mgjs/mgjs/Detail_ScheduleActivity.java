@@ -19,6 +19,7 @@ public class Detail_ScheduleActivity extends AppCompatActivity {
 
     TextView tv_year, tv_month, tv_day, tv_content;
     int schedule_id, str_year, str_month, str_day;
+    int seqNo;
     String str_content;
     View v;
 
@@ -35,7 +36,7 @@ public class Detail_ScheduleActivity extends AppCompatActivity {
         }
 
         Intent intent = getIntent();
-        schedule_id = intent.getExtras().getInt("id");
+        seqNo = intent.getExtras().getInt("id");
         tv_year = (TextView)findViewById(R.id.schedule_year);
         tv_month = (TextView)findViewById(R.id.schedule_month);
         tv_day = (TextView)findViewById(R.id.schedule_day);
@@ -65,14 +66,20 @@ public class Detail_ScheduleActivity extends AppCompatActivity {
                 new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface arg0, int arg1) {
-                        String deleteSql = "DELETE FROM Schedule WHERE _id = " + schedule_id+";";
-                        scheduledb.execSQL(deleteSql);
-                        Cursor cursor = scheduledb.rawQuery("SELECT _id FROM Schedule", null);
-                        int i =1;
-                        while (cursor.moveToNext()){
-                            scheduledb.execSQL("UPDATE Schedule SET _id="+i+";");
-                            i++;
+                        Cursor cursor = scheduledb.rawQuery("SELECT schedule_id FROM Schedule", null);
+                        if (cursor.moveToFirst())
+                        {
+                            schedule_id = cursor.getInt(cursor.getColumnIndex("schedule_id"));;
+                            for (int j = 0;j<seqNo&&cursor.moveToNext();)
+                            {       schedule_id = cursor.getInt(cursor.getColumnIndex("schedule_id"));
+                                    j++;
+                            }
                         }
+
+                        String deleteSql = "DELETE FROM Schedule WHERE schedule_id = " + schedule_id+";";
+                        scheduledb.execSQL(deleteSql);
+                        scheduledb.close();
+
                         Intent intent = new Intent(Detail_ScheduleActivity.this, ScheduleActivity.class);
                         startActivity(intent);
                     }
@@ -85,7 +92,6 @@ public class Detail_ScheduleActivity extends AppCompatActivity {
                         startActivity(intent);
                     }
                 });
-
         AlertDialog alertDialog = alertDialogBuilder.create();
         alertDialog.show();
     }
