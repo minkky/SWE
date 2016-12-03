@@ -1,7 +1,8 @@
 package com.example.mgjs.mgjs;
 
-import android.app.AlertDialog;
+import android.support.v7.app.AlertDialog;
 import android.app.ListActivity;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
@@ -37,9 +38,25 @@ public class NoteActivity extends ListActivity {
         note_listView.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener(){
             @Override
             public boolean onItemLongClick(AdapterView<?> parent, View view, int position, long id){
+                final int setposition = position;
+                android.support.v7.app.AlertDialog.Builder alertDialogBuilder = new android.support.v7.app.AlertDialog.Builder(NoteActivity.this);
+                alertDialogBuilder.setMessage("Are you sure to delete this note?");
+                alertDialogBuilder.setPositiveButton("Yes",
+                        new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface arg0, int arg1) {
+                                deleteNote(setposition);
+                                showNote();
+                            }
+                        });
+                alertDialogBuilder.setNegativeButton("No",
+                        new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface arg0, int arg1) {}
+                        });
+                AlertDialog deleteAlertDialog = alertDialogBuilder.create();
+                deleteAlertDialog.show();
 
-                Log.d("delete function call",position+"");
-                deleteNote(position);
                 return true;
             }
         });
@@ -51,6 +68,7 @@ public class NoteActivity extends ListActivity {
     }
 
     public void deleteNote(int note_Id){
+
 
         SQLiteDatabase noteDB = noteDBHelper.getWritableDatabase();
 
