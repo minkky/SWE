@@ -18,6 +18,7 @@ public class LoginActivity extends AppCompatActivity {
     String loginid, loginpw;
     LoginDBHelper logindbhelper;
     SQLiteDatabase logindb;
+    boolean first_start = false;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -32,6 +33,15 @@ public class LoginActivity extends AppCompatActivity {
         }
 
         Cursor cursor = logindb.rawQuery("select * from login;",null);
+
+        if (cursor.moveToFirst()){
+            first_start = true;
+        }
+
+        if(!first_start)
+            logindb.execSQL("INSERT INTO Login VALUES(null,'mgjs','mgjs');");
+        first_start = true;
+
         while (cursor.moveToNext()) {
             loginid = cursor.getString(1); loginpw = cursor.getString(2);
         }

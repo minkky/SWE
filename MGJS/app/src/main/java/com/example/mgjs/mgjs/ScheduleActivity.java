@@ -73,19 +73,25 @@ public class ScheduleActivity extends ListActivity {
         SQLiteDatabase scheduleDB = scheduleDBHelper.getReadableDatabase();
         String selectQuery = "SELECT schedule_id, schedule_content, schedule_year,schedule_month,schedule_day FROM Schedule";
         ArrayList<HashMap<String, String>> scheduleList = new ArrayList<>();
-        Cursor cursor = scheduleDB.rawQuery(selectQuery,null);
 
-        if (cursor.moveToFirst()){
-            do{
-                HashMap<String,String> schedule = new HashMap<>();
-                schedule.put("schedule_content",cursor.getString(cursor.getColumnIndex("schedule_content")));
-                schedule.put("schedule_year",cursor.getString(cursor.getColumnIndex("schedule_year")));
-                schedule.put("schedule_month",cursor.getString(cursor.getColumnIndex("schedule_month")));
-                schedule.put("schedule_day",cursor.getString(cursor.getColumnIndex("schedule_day")));
-                scheduleList.add(schedule);
-            }while (cursor.moveToNext());
+        try {
+            Cursor cursor = scheduleDB.rawQuery(selectQuery, null);
+
+            if (cursor.moveToFirst()){
+                do{
+                    HashMap<String,String> schedule = new HashMap<>();
+                    schedule.put("schedule_content",cursor.getString(cursor.getColumnIndex("schedule_content")));
+                    schedule.put("schedule_year",cursor.getString(cursor.getColumnIndex("schedule_year")));
+                    schedule.put("schedule_month",cursor.getString(cursor.getColumnIndex("schedule_month")));
+                    schedule.put("schedule_day",cursor.getString(cursor.getColumnIndex("schedule_day")));
+                    scheduleList.add(schedule);
+                }while (cursor.moveToNext());
+            }
+            cursor.close();
+        }catch (Exception e){
+            ;
         }
-        cursor.close();
+
         scheduleDB.close();
         return scheduleList;
     }
