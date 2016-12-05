@@ -8,6 +8,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.google.android.gms.common.api.GoogleApiClient;
 
@@ -55,18 +56,18 @@ public class Detail_PhoneNumberActivity extends AppCompatActivity {
 
     public void delete_onclick(View v) {
 
-        //Toast.makeText(this, ""+position, Toast.LENGTH_SHORT).show();
+        Toast.makeText(this, ""+position, Toast.LENGTH_SHORT).show();
 
          mDatas.remove(position);
 
-      //  Toast.makeText(this, "DELETE SUCCESS", Toast.LENGTH_SHORT).show();
+        //Toast.makeText(this, "DELETE SUCCESS", Toast.LENGTH_SHORT).show();
 
         String str= "DELETE FROM phonebook WHERE _id=" +position+";";
         db.execSQL(str);
 
         adapter.notifyDataSetChanged();
-        // Intent intent = new Intent(Detail_PhoneNumberActivity.this, PhoneBookActivity.class);
-      //  startActivity(intent);
+         Intent intent = new Intent(Detail_PhoneNumberActivity.this, PhoneBookActivity.class);
+         startActivity(intent);
 
 
     }
