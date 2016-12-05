@@ -22,7 +22,6 @@ public class ScheduleActivity extends ListActivity {
     ImageButton schedule_addButton;
     Intent intent;
     ScheduleDBHelper scheduleDBHelper;
-
     ListView schedule_listView;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -36,8 +35,18 @@ public class ScheduleActivity extends ListActivity {
             @Override
             public void onItemClick(AdapterView<?> parent,View view, int position,long id){
                 intent = new Intent(ScheduleActivity.this, Detail_ScheduleActivity.class);
-                intent.putExtra("id",position);
-                startActivity(intent);
+                SQLiteDatabase scheduledb = scheduleDBHelper.getWritableDatabase();
+                Cursor cursor = scheduledb.rawQuery("SELECT schedule_id FROM Schedule", null);
+                if (cursor.moveToFirst()) {
+                    int i = cursor.getInt(cursor.getColumnIndex("schedule_id"));
+
+                    for (int j = 0; j < position && cursor.moveToNext(); ) {
+                        i = cursor.getInt(cursor.getColumnIndex("schedule_id"));
+                        j++;
+                    }
+                    intent.putExtra("id",i);
+                    startActivity(intent);
+                }
         }});
     }
 
@@ -62,7 +71,7 @@ public class ScheduleActivity extends ListActivity {
     //CREATE TABLE Schedule ( _id, schedule_content , schedule_year , schedule_month , schedule_day )
     public ArrayList<HashMap<String, String>>getScheduleList(){
         SQLiteDatabase scheduleDB = scheduleDBHelper.getReadableDatabase();
-        String selectQuery = "SELECT _id, schedule_content, schedule_year,schedule_month,schedule_day FROM schedule";
+        String selectQuery = "SELECT schedule_id, schedule_content, schedule_year,schedule_month,schedule_day FROM Schedule";
         ArrayList<HashMap<String, String>> scheduleList = new ArrayList<>();
         Cursor cursor = scheduleDB.rawQuery(selectQuery,null);
 

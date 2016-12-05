@@ -19,7 +19,6 @@ public class Detail_ScheduleActivity extends AppCompatActivity {
 
     TextView tv_year, tv_month, tv_day, tv_content;
     int schedule_id, str_year, str_month, str_day;
-    int seqNo;
     String str_content;
     View v;
 
@@ -36,7 +35,7 @@ public class Detail_ScheduleActivity extends AppCompatActivity {
         }
 
         Intent intent = getIntent();
-        seqNo = intent.getExtras().getInt("id");
+        schedule_id = intent.getExtras().getInt("id");
         tv_year = (TextView)findViewById(R.id.schedule_year);
         tv_month = (TextView)findViewById(R.id.schedule_month);
         tv_day = (TextView)findViewById(R.id.schedule_day);
@@ -46,7 +45,7 @@ public class Detail_ScheduleActivity extends AppCompatActivity {
     }
 
     public void showDetailSchedule(){
-        Cursor cursor = scheduledb.rawQuery("SELECT * FROM Schedule where _id = " + schedule_id, null);
+        Cursor cursor = scheduledb.rawQuery("SELECT * FROM Schedule where schedule_id = " + schedule_id, null);
         while (cursor.moveToNext()) {
             str_content = cursor.getString(1);
             str_year = cursor.getInt(2);
@@ -66,16 +65,6 @@ public class Detail_ScheduleActivity extends AppCompatActivity {
                 new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface arg0, int arg1) {
-                        Cursor cursor = scheduledb.rawQuery("SELECT schedule_id FROM Schedule", null);
-                        if (cursor.moveToFirst())
-                        {
-                            schedule_id = cursor.getInt(cursor.getColumnIndex("schedule_id"));;
-                            for (int j = 0;j<seqNo&&cursor.moveToNext();)
-                            {       schedule_id = cursor.getInt(cursor.getColumnIndex("schedule_id"));
-                                    j++;
-                            }
-                        }
-
                         String deleteSql = "DELETE FROM Schedule WHERE schedule_id = " + schedule_id+";";
                         scheduledb.execSQL(deleteSql);
                         scheduledb.close();

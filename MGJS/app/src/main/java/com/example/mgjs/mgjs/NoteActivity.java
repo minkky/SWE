@@ -1,13 +1,12 @@
 package com.example.mgjs.mgjs;
 
-import android.support.v7.app.AlertDialog;
 import android.app.ListActivity;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
-import android.util.Log;
+import android.support.v7.app.AlertDialog;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ImageButton;
@@ -87,11 +86,10 @@ public class NoteActivity extends ListActivity {
                     }
                 }
             noteDB.delete("note","note_id= ?", new String[] {String.valueOf(i)});
+            android.support.v7.app.AlertDialog.Builder alertDialogBuilder = new android.support.v7.app.AlertDialog.Builder(NoteActivity.this);
+            alertDialogBuilder.setMessage("Delete Complete!");
         }
-
-
-
-        noteDB.close();
+       noteDB.close();
     }
 
     boolean ishaveContent(Cursor cursor){
