@@ -4,9 +4,6 @@ import android.content.Context;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 
-/**
- * Created by minji on 2016. 11. 28..
- */
 public class LoginDBHelper  extends SQLiteOpenHelper {
     private static final String DATABASE_NAME = "login.db";
     private static final int DATABASE_VERSION = 1;

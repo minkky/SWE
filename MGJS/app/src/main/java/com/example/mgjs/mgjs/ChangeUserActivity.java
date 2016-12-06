@@ -57,14 +57,12 @@ public class ChangeUserActivity extends AppCompatActivity {
     public void onChangeUserInfoClicked(View view){
 
         AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(this);
-        /*변경된 값을 불러오는지 확인하기*/
-        String str_id = id.getText().toString();
-        String str_pw = pw.getText().toString();
-        String str_checkpw = checkpw.getText().toString();
+        String change_id = id.getText().toString();
+        String change_pw = pw.getText().toString();
+        String change_checkpw = checkpw.getText().toString();
 
-        if( checkEqualPassword(str_pw,str_checkpw) ) {
-            /*db에 저장하는 부분이 필요함*/
-            logindb.execSQL("INSERT INTO Login VALUES(null,'"+str_id+"','"+str_pw+"');");
+        if( checkEqualPassword(change_pw, change_checkpw) ) {
+            logindb.execSQL("INSERT INTO Login VALUES(null,'"+change_id+"','"+change_pw+"');");
 
             alertDialogBuilder.setMessage("정보가 변경되었습니다!");
             alertDialogBuilder.setPositiveButton("확인",

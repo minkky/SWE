@@ -13,7 +13,7 @@ import android.widget.Button;
 import android.widget.EditText;
 
 public class ValidateUserActivity extends AppCompatActivity {
-    EditText et;
+    EditText password;
     LoginDBHelper logindbhelper;
     SQLiteDatabase logindb;
     String loginpw;
@@ -23,7 +23,7 @@ public class ValidateUserActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_validateuser);
         Button btn = (Button)findViewById(R.id.validateuser_btn);
-        et = (EditText)findViewById(R.id.validateuser_pw);
+        password = (EditText)findViewById(R.id.validateuser_pw);
         btn.setText("확인");
 
         logindbhelper = new LoginDBHelper(this);
@@ -38,14 +38,15 @@ public class ValidateUserActivity extends AppCompatActivity {
             loginpw = cursor.getString(2);
         }
 
-
     }
 
     public boolean matchPassword(){
-        if(et.getText().toString().equals(loginpw))
+        String passwd = password.getText().toString();
+        if(passwd.equals(loginpw))
             return true;
         else return false;
-        }
+    }
+
     public void onPasswordCheckClicked(View view){
         if(matchPassword()){
             Intent intent = new Intent(ValidateUserActivity.this, ChangeUserActivity.class);
@@ -58,7 +59,7 @@ public class ValidateUserActivity extends AppCompatActivity {
                     new DialogInterface.OnClickListener() {
                         @Override
                         public void onClick(DialogInterface arg0, int arg1) {
-                            et.setText("");
+                            password.setText("");
                         }
                     });
 
