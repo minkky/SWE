@@ -88,7 +88,7 @@ public class ChangeUserActivity extends AppCompatActivity {
         alertDialog.show();
     }
 
-    public void onCancleChangeUserInfoClicked(View view){
+    public void onCancelChangeUserInfoClicked(View view){
         Intent intent = new Intent(ChangeUserActivity.this, MainActivity.class);
         startActivity(intent);
     }
