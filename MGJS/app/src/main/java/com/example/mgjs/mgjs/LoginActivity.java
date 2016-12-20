@@ -19,7 +19,6 @@ public class LoginActivity extends AppCompatActivity {
     String savedId, savedPW;
     LoginDBHelper logindbhelper;
     SQLiteDatabase logindb;
-    boolean first_start = false;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -35,12 +34,15 @@ public class LoginActivity extends AppCompatActivity {
 
         Cursor cursor = logindb.rawQuery("select * from Login;",null);
         int count = cursor.getCount();
-
+        System.out.println("***************"+count);
         if(count == 0)
             logindb.execSQL("INSERT INTO Login VALUES(null,'mgjs','mgjs');");
 
-        cursor.moveToLast();
-        loginid = cursor.getString(1); loginpw = cursor.getString(2);
+        cursor = logindb.rawQuery("select * from Login;",null);
+        if(cursor.moveToLast()) {
+            loginid = cursor.getString(1);
+            loginpw = cursor.getString(2);
+        }
 
         id = (EditText)findViewById(R.id.login_id);
         pw = (EditText)findViewById(R.id.login_pw);
