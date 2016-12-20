@@ -60,7 +60,6 @@ public class LoginActivity extends AppCompatActivity {
     }
 
     public void onLoginBtnClicked(View view){
-        Toast.makeText(getApplicationContext(),loginid + "\t" + loginpw, Toast.LENGTH_SHORT).show();
         if(getSavedId().equals(loginid) && getSavedPW().equals(loginpw)){
             Toast.makeText(getApplicationContext(),"로그인 성공",Toast.LENGTH_SHORT).show();
             Intent intent = new Intent(LoginActivity.this, MainActivity.class);
