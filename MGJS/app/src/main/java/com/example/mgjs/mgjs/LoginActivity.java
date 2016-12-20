@@ -16,6 +16,7 @@ import android.widget.Toast;
 public class LoginActivity extends AppCompatActivity {
     EditText id, pw;
     String loginid, loginpw;
+    String savedId, savedPW;
     LoginDBHelper logindbhelper;
     SQLiteDatabase logindb;
     boolean first_start = false;
@@ -32,27 +33,33 @@ public class LoginActivity extends AppCompatActivity {
             logindb = logindbhelper.getReadableDatabase();
         }
 
-        Cursor cursor = logindb.rawQuery("select * from login;",null);
+        Cursor cursor = logindb.rawQuery("select * from Login;",null);
+        int count = cursor.getCount();
 
-        if (cursor.moveToFirst()){
-            first_start = true;
-        }
-
-        if(!first_start)
+        if(count == 0)
             logindb.execSQL("INSERT INTO Login VALUES(null,'mgjs','mgjs');");
-        first_start = true;
 
-        while (cursor.moveToNext()) {
-            loginid = cursor.getString(1); loginpw = cursor.getString(2);
-        }
+        cursor.moveToLast();
+        loginid = cursor.getString(1); loginpw = cursor.getString(2);
 
         id = (EditText)findViewById(R.id.login_id);
         pw = (EditText)findViewById(R.id.login_pw);
 
     }
 
+    public String getSavedId(){
+        savedId = id.getText().toString();
+        return savedId;
+    }
+
+    public String getSavedPW(){
+        savedPW = pw.getText().toString();
+        return  savedPW;
+    }
+
     public void onLoginBtnClicked(View view){
-        if(id.getText().toString().equals(loginid) && pw.getText().toString().equals(loginpw)){
+        Toast.makeText(getApplicationContext(),loginid + "\t" + loginpw, Toast.LENGTH_SHORT).show();
+        if(getSavedId().equals(loginid) && getSavedPW().equals(loginpw)){
             Toast.makeText(getApplicationContext(),"로그인 성공",Toast.LENGTH_SHORT).show();
             Intent intent = new Intent(LoginActivity.this, MainActivity.class);
             startActivity(intent);
@@ -72,4 +79,5 @@ public class LoginActivity extends AppCompatActivity {
             alertDialog.show();
         }
     }
+
 }

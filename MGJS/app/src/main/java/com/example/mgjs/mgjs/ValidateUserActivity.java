@@ -40,15 +40,15 @@ public class ValidateUserActivity extends AppCompatActivity {
 
     }
 
-    public boolean matchPassword(){
-        String passwd = password.getText().toString();
-        if(passwd.equals(loginpw))
+    public boolean matchPassword(String pw, String checkpw){
+        if(pw.equals(checkpw))
             return true;
         else return false;
     }
 
     public void onPasswordCheckClicked(View view){
-        if(matchPassword()){
+        String pw = password.getText().toString();
+        if(matchPassword(pw, loginpw)){
             Intent intent = new Intent(ValidateUserActivity.this, ChangeUserActivity.class);
             startActivity(intent);
         }
