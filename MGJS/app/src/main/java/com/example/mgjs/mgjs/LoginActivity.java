@@ -34,7 +34,7 @@ public class LoginActivity extends AppCompatActivity {
 
         Cursor cursor = logindb.rawQuery("select * from Login;",null);
         int count = cursor.getCount();
-        System.out.println("***************"+count);
+
         if(count == 0)
             logindb.execSQL("INSERT INTO Login VALUES(null,'mgjs','mgjs');");
 

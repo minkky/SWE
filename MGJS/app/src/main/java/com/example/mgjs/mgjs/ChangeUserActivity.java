@@ -32,7 +32,6 @@ public class ChangeUserActivity extends AppCompatActivity {
         yes = (Button)findViewById(R.id.changeuser_ybtn); yes.setText("확인");
         no = (Button)findViewById(R.id.changeuser_nbtn); no.setText("취소");
 
-        /*db에서 불러온 값들을 id, pw, checkpw에 각각 저장해야함.*/
         logindbhelper = new LoginDBHelper(this);
         try {
             logindb = logindbhelper.getWritableDatabase();
@@ -50,8 +49,10 @@ public class ChangeUserActivity extends AppCompatActivity {
     }
 
     public boolean checkEqualPassword(String password, String check_password){
-        if(password.equals(check_password)) return true;
-        else return false;
+        if(password.equals(check_password))
+            return true;
+        else
+            return false;
     }
 
     public void onChangeUserInfoClicked(View view){
