@@ -33,7 +33,7 @@ public class PhoneBookActivity extends Activity {
         final ArrayList<String> mDatas = new ArrayList<String>();
 
         while (cursor.moveToNext()) {
-            str = "NAME :\t\t\t\t\t\t\t\t\t\t"+ cursor.getString(1) + "\n" + "PHONE : \t\t\t\t\t\t\t" + cursor.getString(2);
+            str = "NAME :\t\t\t\t\t\t\t\t\t\t\t"+ cursor.getString(1) + "\n" + "PHONE : \t\t\t\t\t\t\t\t" + cursor.getString(2);
             mDatas.add(str);
         }
 
