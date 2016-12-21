@@ -16,6 +16,7 @@ public class TestSample {
         validateUserActivity = new ValidateUserActivity();
     }
 
+
     @Test
     public void test(){
         pw = "mgjs";
@@ -28,3 +29,4 @@ public class TestSample {
     }
 
 }
+

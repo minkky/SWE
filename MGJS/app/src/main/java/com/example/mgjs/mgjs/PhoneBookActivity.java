@@ -9,12 +9,10 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
-
 import java.util.ArrayList;
 
 
 public class PhoneBookActivity extends Activity {
-
     PhoneBookDBHelper helper;
     SQLiteDatabase db;
 
@@ -47,11 +45,8 @@ public class PhoneBookActivity extends Activity {
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
 
                 Intent intent = new Intent(PhoneBookActivity.this, Detail_PhoneNumberActivity.class);
-
                 intent.putExtra("detail", mDatas.get(position));
-
                 intent.putExtra("position", position);
-
                 startActivity(intent);
             }
 

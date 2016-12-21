@@ -13,7 +13,6 @@ public class Add_PhoneNumberActivity extends AppCompatActivity {
 
     EditText nameEdit;
     EditText phoneEdit;
-    //TextView result;
 
     PhoneBookDBHelper helper;
     SQLiteDatabase db;
@@ -47,8 +46,12 @@ public class Add_PhoneNumberActivity extends AppCompatActivity {
         db.execSQL(sql);
 
         Toast.makeText(getApplicationContext(), "success", Toast.LENGTH_SHORT).show();
-        nameEdit.setText(""); phoneEdit.setText("");
+        nameEdit.setText("");
+        phoneEdit.setText("");
         db.close();
+
+        Intent intent = new Intent(Add_PhoneNumberActivity.this, PhoneBookActivity.class);
+        startActivity(intent);
 
     }
 
