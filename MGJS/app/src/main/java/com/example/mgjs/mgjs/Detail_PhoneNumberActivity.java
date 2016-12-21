@@ -23,6 +23,7 @@ public class Detail_PhoneNumberActivity extends AppCompatActivity {
     SQLiteDatabase db;
 
     int position;
+
     final ArrayList<String> mDatas = new ArrayList<String>();
     ArrayAdapter adapter;
 
@@ -34,7 +35,8 @@ public class Detail_PhoneNumberActivity extends AppCompatActivity {
         helper = new PhoneBookDBHelper(this);
         db = helper.getWritableDatabase();
 
-        Cursor cursor = db.rawQuery("SELECT * FROM phonebook", null);
+
+        Cursor cursor = db.rawQuery("SELECT * FROM phonebook order by name asc", null);
         String str = "";
 
         while (cursor.moveToNext()) {
@@ -43,6 +45,8 @@ public class Detail_PhoneNumberActivity extends AppCompatActivity {
         }
 
         adapter = new ArrayAdapter(getApplicationContext(), R.layout.activity_phonebook_items, mDatas);
+
+
 
         TextView detail = (TextView) findViewById(R.id.textView4);
 
@@ -57,12 +61,25 @@ public class Detail_PhoneNumberActivity extends AppCompatActivity {
     public void delete_onclick(View v) {
 
         Toast.makeText(this, ""+position, Toast.LENGTH_SHORT).show();
-
-         mDatas.remove(position);
-
         //Toast.makeText(this, "DELETE SUCCESS", Toast.LENGTH_SHORT).show();
 
-        String str= "DELETE FROM phonebook WHERE _id=" +position+";";
+        helper = new PhoneBookDBHelper(this);
+        db = helper.getWritableDatabase();
+
+        Cursor cursor = db.rawQuery("SELECT * FROM phonebook order by name asc", null);
+
+        cursor.moveToFirst();
+
+        int i=0;
+
+        while(i < position){
+            cursor.moveToNext();
+            i++;
+        }
+
+        int id = cursor.getInt(0);
+
+        String str= "DELETE FROM phonebook WHERE _id=" +id+";";
         db.execSQL(str);
 
         adapter.notifyDataSetChanged();

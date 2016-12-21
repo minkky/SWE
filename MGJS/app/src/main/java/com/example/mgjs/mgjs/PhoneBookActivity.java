@@ -30,7 +30,7 @@ public class PhoneBookActivity extends Activity {
         helper = new PhoneBookDBHelper(this);
         db = helper.getWritableDatabase();
 
-        Cursor cursor = db.rawQuery("SELECT * FROM phonebook", null);
+        Cursor cursor = db.rawQuery("SELECT * FROM phonebook order by name asc", null);
         String str = "";
         final ArrayList<String> mDatas = new ArrayList<String>();
 
@@ -44,7 +44,6 @@ public class PhoneBookActivity extends Activity {
         listView.setAdapter(adapter);
 
 
-
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
 
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
@@ -52,17 +51,18 @@ public class PhoneBookActivity extends Activity {
                 Intent intent = new Intent(PhoneBookActivity.this, Detail_PhoneNumberActivity.class);
 
                 intent.putExtra("detail", mDatas.get(position));
+
                 intent.putExtra("position", position);
 
                 startActivity(intent);
             }
 
 
-            //Toast.makeText(this, mDatas.get(position)+"", Toast.LENGTH_LONG).show();
-
         });
 
     }
+
+
     public void add_onclick(View v) {
         Intent intent = new Intent(PhoneBookActivity.this, Add_PhoneNumberActivity.class);
         startActivity(intent);

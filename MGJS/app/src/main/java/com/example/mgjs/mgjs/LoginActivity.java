@@ -61,12 +61,6 @@ public class LoginActivity extends AppCompatActivity {
             alertDialog.show();
         }
     }
-
-    public void onon(View v){
-        Intent intent = new Intent(this, Add_PhoneNumberActivity.class);
-        startActivity(intent);
-
-    }
-
+    
 
 }
