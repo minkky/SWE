@@ -29,7 +29,6 @@ public class Add_PhoneNumberActivity extends AppCompatActivity {
 
         nameEdit = (EditText)findViewById(R.id.name);
         phoneEdit = (EditText)findViewById(R.id.phone_number);
-        // dbHelper = new DBHelper(this, dbName, null, dbVersion);
     }
 
     public void savePhoneNumber(View v){

@@ -11,7 +11,6 @@ import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import java.util.ArrayList;
 
-
 public class PhoneBookActivity extends Activity {
     PhoneBookDBHelper helper;
     SQLiteDatabase db;
@@ -32,7 +31,6 @@ public class PhoneBookActivity extends Activity {
 
         while (cursor.moveToNext()) {
             str=makeStrAddingInmData(cursor.getString(1),cursor.getString(2));
-            //str = "NAME :\t\t\t\t\t\t\t\t\t\t\t"+ cursor.getString(1) + "\n" + "PHONE : \t\t\t\t\t\t\t\t" + cursor.getString(2);
             mDatas.add(str);
         }
 
@@ -40,18 +38,14 @@ public class PhoneBookActivity extends Activity {
         ListView listView = (ListView) findViewById(R.id.listview);
         listView.setAdapter(adapter);
 
-
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
 
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-
                 Intent intent = new Intent(PhoneBookActivity.this, Detail_PhoneNumberActivity.class);
                 intent.putExtra("detail", mDatas.get(position));
                 intent.putExtra("position", position);
                 startActivity(intent);
             }
-
-
         });
     }
 
@@ -68,7 +62,5 @@ public class PhoneBookActivity extends Activity {
         Intent intent = new Intent(PhoneBookActivity.this, Add_PhoneNumberActivity.class);
         startActivity(intent);
     }
-
-
 }
 

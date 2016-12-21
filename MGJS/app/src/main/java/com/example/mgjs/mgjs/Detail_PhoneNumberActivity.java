@@ -32,7 +32,7 @@ public class Detail_PhoneNumberActivity extends AppCompatActivity {
         String str = "";
 
         while (cursor.moveToNext()) {
-            str = "NAME :\t\t\t\t\t\t\t\t\t"+ cursor.getString(1) + "\n" + "PHONE : \t\t\t\t\t\t" + cursor.getString(2);
+            str=makeStrAddingInmData(cursor.getString(1),cursor.getString(2));
             mDatas.add(str);
         }
 
@@ -44,6 +44,14 @@ public class Detail_PhoneNumberActivity extends AppCompatActivity {
 
     }
 
+    public String makeStrAddingInmData(String nameString , String phonenumberString){
+        String str;
+
+        str= "NAME :\t\t\t\t\t\t\t\t\t\t\t"+ nameString + "\n" + "PHONE : \t\t\t\t\t\t\t\t" + phonenumberString;
+
+        return str;
+    }
+
     public void deletePhoneNumber(View v) {
         Toast.makeText(this, ""+position, Toast.LENGTH_SHORT).show();
 
@@ -51,7 +59,6 @@ public class Detail_PhoneNumberActivity extends AppCompatActivity {
         db = helper.getWritableDatabase();
 
         Cursor cursor = db.rawQuery("SELECT * FROM phonebook order by name asc", null);
-
 
         cursor.moveToFirst();
         int i=0;
@@ -61,12 +68,8 @@ public class Detail_PhoneNumberActivity extends AppCompatActivity {
         }
 
         int id = cursor.getInt(0);
-
         String str = makeDeleteSQLquery(id);
-
-        //String str= "DELETE FROM phonebook WHERE _id=" +id+";";
         db.execSQL(str);
-
         adapter.notifyDataSetChanged();
         Intent intent = new Intent(Detail_PhoneNumberActivity.this, PhoneBookActivity.class);
         startActivity(intent);
