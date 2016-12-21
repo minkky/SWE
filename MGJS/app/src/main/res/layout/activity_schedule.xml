@@ -14,41 +14,47 @@
     <LinearLayout
         android:orientation="horizontal"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="15dp"
+        android:paddingBottom="5dp">
 
         <TextView
-            android:layout_height="wrap_content"
+            android:layout_height="match_parent"
             android:layout_alignParentTop="true"
             android:layout_alignParentLeft="true"
             android:layout_alignParentStart="true"
             android:id="@+id/schedule_titleTextView"
-            android:text="Schedule 전체보기"
-            android:textSize="24sp"
+            android:text="View all Schedule"
+            android:textSize="30sp"
             android:layout_width="240dp"
-            android:layout_weight="1" />
+            android:layout_weight="1"
+            android:textStyle="normal|bold|italic"
+            android:gravity="center_vertical" />
 
         <ImageButton
             android:src="@android:drawable/ic_input_add"
-            android:layout_height="wrap_content"
+            android:layout_height="match_parent"
             android:id="@+id/schedule_addButton"
             android:elevation="0dp"
             android:textAllCaps="false"
             android:background="?android:attr/colorBackground"
-            android:layout_alignParentTop="true"
-            android:layout_alignParentRight="true"
-            android:layout_alignParentEnd="true"
             android:layout_weight="1"
             android:layout_width="wrap_content"
-            android:onClick="onAddScheduleClicked"/>
+            android:onClick="onAddScheduleClicked" />
 
     </LinearLayout>
+
+    <View
+        android:layout_width="fill_parent"
+        android:layout_height="3dip"
+        android:layout_marginBottom="10dp"
+        android:background="#A9A9A9"/>
 
     <ListView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:id="@+id/android:list"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true"
-        android:layout_weight="1" />
+        android:layout_weight="1"
+        android:layout_marginTop="10dp" />
 
 </LinearLayout>
