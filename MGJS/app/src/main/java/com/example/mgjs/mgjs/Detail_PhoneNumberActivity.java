@@ -26,10 +26,8 @@ public class Detail_PhoneNumberActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_detailphonenumber);
-
         helper = new PhoneBookDBHelper(this);
         db = helper.getWritableDatabase();
-
         Cursor cursor = db.rawQuery("SELECT * FROM phonebook order by name asc", null);
         String str = "";
 
@@ -43,7 +41,6 @@ public class Detail_PhoneNumberActivity extends AppCompatActivity {
         Intent intent = getIntent();
         detail.setText(intent.getStringExtra("detail"));
         position = getIntent().getExtras().getInt("position");
-
     }
 
     public void deletePhoneNumber(View v) {
@@ -70,8 +67,6 @@ public class Detail_PhoneNumberActivity extends AppCompatActivity {
         adapter.notifyDataSetChanged();
         Intent intent = new Intent(Detail_PhoneNumberActivity.this, PhoneBookActivity.class);
         startActivity(intent);
-
-
     }
 
     public void before_onclick(View v) {
