@@ -1,10 +1,11 @@
 package com.example.mgjs.mgjs;
 
-import android.database.sqlite.SQLiteDatabase;
-import android.database.sqlite.SQLiteException;
-
 import org.junit.*;
 import static org.junit.Assert.*;
+
+/**
+ * Created by minji on 2016. 12. 21..
+ */
 
 public class LoginTest {
     private ValidateUserActivity validateUserActivity;
@@ -18,7 +19,7 @@ public class LoginTest {
     }
 
     @Test
-    public void matchPasswordTest(){
+    public void testMatchPasswordInValidate(){
         password = "mgjs";
         myinput_password = "mgjs";
         boolean isMatchedPasswordFromValidate = validateUserActivity.matchPassword(password, myinput_password);
@@ -27,7 +28,7 @@ public class LoginTest {
     }
 
     @Test
-    public void equalPasswordTest(){
+    public void testEqualPasswordInChangeUser(){
         change_password = "mgjss";
         change_checkpassword = "mgjsss";
         boolean isMatchedTwoPasswordFromChange = changeUserActivity.checkEqualPassword(change_password, change_checkpassword);
