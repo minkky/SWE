@@ -25,7 +25,7 @@
         android:text="No"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:onClick="no_onClick"
+        android:onClick="canclePhoneNumber"
         android:layout_marginRight="37dp"
         android:layout_marginEnd="37dp"
         android:id="@+id/button3"
@@ -41,7 +41,7 @@
         android:layout_marginLeft="30dp"
         android:layout_marginStart="30dp"
         android:id="@+id/button2"
-        android:onClick="yes_onClick"
+        android:onClick="savePhoneNumber"
         android:layout_centerVertical="true"
         android:layout_alignLeft="@+id/textView8"
         android:layout_alignStart="@+id/textView8" />

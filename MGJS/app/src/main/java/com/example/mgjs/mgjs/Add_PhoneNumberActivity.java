@@ -35,7 +35,7 @@ public class Add_PhoneNumberActivity extends AppCompatActivity {
 
         // dbHelper = new DBHelper(this, dbName, null, dbVersion);
     }
-    public void yes_onClick(View v){
+    public void savePhoneNumber(View v){
 
         String sql;
 
@@ -55,7 +55,7 @@ public class Add_PhoneNumberActivity extends AppCompatActivity {
 
     }
 
-    public void no_onClick(View v){
+    public void canclePhoneNumber(View v){
         Intent intent = new Intent(this, PhoneBookActivity.class);
         startActivity(intent);
 

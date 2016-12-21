@@ -10,9 +10,8 @@ import android.widget.ArrayAdapter;
 import android.widget.TextView;
 import android.widget.Toast;
 import java.util.ArrayList;
+
 public class Detail_PhoneNumberActivity extends AppCompatActivity {
-
-
     //private GoogleApiClient client;
 
     PhoneBookDBHelper helper;
@@ -31,7 +30,6 @@ public class Detail_PhoneNumberActivity extends AppCompatActivity {
         helper = new PhoneBookDBHelper(this);
         db = helper.getWritableDatabase();
 
-
         Cursor cursor = db.rawQuery("SELECT * FROM phonebook order by name asc", null);
         String str = "";
 
@@ -41,23 +39,15 @@ public class Detail_PhoneNumberActivity extends AppCompatActivity {
         }
 
         adapter = new ArrayAdapter(getApplicationContext(), R.layout.activity_phonebook_items, mDatas);
-
-
-
         TextView detail = (TextView) findViewById(R.id.textView4);
-
         Intent intent = getIntent();
         detail.setText(intent.getStringExtra("detail"));
-
         position = getIntent().getExtras().getInt("position");
-
 
     }
 
-    public void delete_onclick(View v) {
-
+    public void deletePhoneNumber(View v) {
         Toast.makeText(this, ""+position, Toast.LENGTH_SHORT).show();
-        //Toast.makeText(this, "DELETE SUCCESS", Toast.LENGTH_SHORT).show();
 
         helper = new PhoneBookDBHelper(this);
         db = helper.getWritableDatabase();
@@ -67,7 +57,6 @@ public class Detail_PhoneNumberActivity extends AppCompatActivity {
         cursor.moveToFirst();
 
         int i=0;
-
         while(i < position){
             cursor.moveToNext();
             i++;

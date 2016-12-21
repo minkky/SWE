@@ -29,7 +29,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/button"
-        android:onClick="delete_onclick"
+        android:onClick="deletePhoneNumber"
         android:layout_marginRight="55dp"
         android:layout_marginEnd="55dp"
         android:layout_centerVertical="true"
