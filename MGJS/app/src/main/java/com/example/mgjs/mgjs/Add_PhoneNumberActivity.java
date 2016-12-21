@@ -10,13 +10,10 @@ import android.widget.EditText;
 import android.widget.Toast;
 
 public class Add_PhoneNumberActivity extends AppCompatActivity {
-
     EditText nameEdit;
     EditText phoneEdit;
-
     PhoneBookDBHelper helper;
     SQLiteDatabase db;
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -32,13 +29,11 @@ public class Add_PhoneNumberActivity extends AppCompatActivity {
 
         nameEdit = (EditText)findViewById(R.id.name);
         phoneEdit = (EditText)findViewById(R.id.phone_number);
-
         // dbHelper = new DBHelper(this, dbName, null, dbVersion);
     }
+
     public void savePhoneNumber(View v){
-
         String sql;
-
         String name = nameEdit.getText().toString();
         String phone_number = phoneEdit.getText().toString();
 
@@ -52,7 +47,6 @@ public class Add_PhoneNumberActivity extends AppCompatActivity {
 
         Intent intent = new Intent(Add_PhoneNumberActivity.this, PhoneBookActivity.class);
         startActivity(intent);
-
     }
 
     public void canclePhoneNumber(View v){

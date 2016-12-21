@@ -31,7 +31,8 @@ public class PhoneBookActivity extends Activity {
         final ArrayList<String> mDatas = new ArrayList<String>();
 
         while (cursor.moveToNext()) {
-            str = "NAME :\t\t\t\t\t\t\t\t\t\t\t"+ cursor.getString(1) + "\n" + "PHONE : \t\t\t\t\t\t\t\t" + cursor.getString(2);
+            str=makeStrAddingInmData(cursor.getString(1),cursor.getString(2));
+            //str = "NAME :\t\t\t\t\t\t\t\t\t\t\t"+ cursor.getString(1) + "\n" + "PHONE : \t\t\t\t\t\t\t\t" + cursor.getString(2);
             mDatas.add(str);
         }
 
@@ -52,7 +53,14 @@ public class PhoneBookActivity extends Activity {
 
 
         });
+    }
 
+    public String makeStrAddingInmData(String nameString , String phonenumberString){
+        String str;
+
+        str= "NAME :\t\t\t\t\t\t\t\t\t\t\t"+ nameString + "\n" + "PHONE : \t\t\t\t\t\t\t\t" + phonenumberString;
+
+        return str;
     }
 
 

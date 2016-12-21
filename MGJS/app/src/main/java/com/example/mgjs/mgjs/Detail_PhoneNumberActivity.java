@@ -32,7 +32,7 @@ public class Detail_PhoneNumberActivity extends AppCompatActivity {
         String str = "";
 
         while (cursor.moveToNext()) {
-            str = "NAME :\t\t\t\t\t\t\t\t\t\t"+ cursor.getString(1) + "\n" + "PHONE : \t\t\t\t\t\t\t" + cursor.getString(2);
+            str = "NAME :\t\t\t\t\t\t\t\t\t"+ cursor.getString(1) + "\n" + "PHONE : \t\t\t\t\t\t" + cursor.getString(2);
             mDatas.add(str);
         }
 
@@ -41,6 +41,7 @@ public class Detail_PhoneNumberActivity extends AppCompatActivity {
         Intent intent = getIntent();
         detail.setText(intent.getStringExtra("detail"));
         position = getIntent().getExtras().getInt("position");
+
     }
 
     public void deletePhoneNumber(View v) {
@@ -51,8 +52,8 @@ public class Detail_PhoneNumberActivity extends AppCompatActivity {
 
         Cursor cursor = db.rawQuery("SELECT * FROM phonebook order by name asc", null);
 
-        cursor.moveToFirst();
 
+        cursor.moveToFirst();
         int i=0;
         while(i < position){
             cursor.moveToNext();
@@ -61,12 +62,20 @@ public class Detail_PhoneNumberActivity extends AppCompatActivity {
 
         int id = cursor.getInt(0);
 
-        String str= "DELETE FROM phonebook WHERE _id=" +id+";";
+        String str = makeDeleteSQLquery(id);
+
+        //String str= "DELETE FROM phonebook WHERE _id=" +id+";";
         db.execSQL(str);
 
         adapter.notifyDataSetChanged();
         Intent intent = new Intent(Detail_PhoneNumberActivity.this, PhoneBookActivity.class);
         startActivity(intent);
+    }
+
+    public String makeDeleteSQLquery(int id){
+        String str;
+        str = "DELETE FROM phonebook WHERE _id=" +id+";";
+        return str;
     }
 
     public void before_onclick(View v) {
