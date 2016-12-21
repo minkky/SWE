@@ -56,7 +56,7 @@ public class PhoneBookActivity extends Activity {
     }
 
 
-    public void add_onclick(View v) {
+    public void onAddPhoneNumberClicked(View v) {
         Intent intent = new Intent(PhoneBookActivity.this, Add_PhoneNumberActivity.class);
         startActivity(intent);
     }
