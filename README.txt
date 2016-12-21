@@ -23,3 +23,4 @@ Android Studio의 LoginActivity.java에서 에뮬레이터로 실행시키시면, 처음에 로그인
 
 
 + Software Design과정에서 cancle 표현의 잘못된 점을 뒤늦게 찾아, 함수들에 있는 해당 표현을 cancel로 정정하였습니다.
++ user story 에서 한글로 작성했던 버튼명은 모두 영어로 대체되었습니다.

@@ -10,41 +10,57 @@
     android:paddingTop="@dimen/activity_vertical_margin"
     tools:context="com.example.mgjs.mgjs.Detail_PhoneNumberActivity">
 
-    <Button
-        android:text="Before"
-        android:layout_width="wrap_content"
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:id="@+id/button5"
-
-        android:onClick="before_onclick"
-        android:layout_alignBaseline="@+id/button"
-        android:layout_alignBottom="@+id/button"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true"
-        android:layout_marginLeft="53dp"
-        android:layout_marginStart="53dp" />
-
-    <Button
-        android:text="Delete"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/button"
-        android:onClick="deletePhoneNumber"
-        android:layout_marginRight="55dp"
-        android:layout_marginEnd="55dp"
         android:layout_centerVertical="true"
-        android:layout_alignParentRight="true"
-        android:layout_alignParentEnd="true" />
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true">
+
+        <TextView
+            android:text="TextView"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:id="@+id/textView4"
+            android:textSize="24sp" />
+
+
+        <LinearLayout
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginBottom="30dp"
+            android:layout_marginTop="30dp">
+
+            <Button
+                android:text="Before"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/button5"
+                android:onClick="before_onclick"
+                android:layout_weight="1" />
+
+            <Button
+                android:text="Delete"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/button"
+                android:onClick="deletePhoneNumber"
+                android:layout_weight="1" />
+        </LinearLayout>
+    </LinearLayout>
 
     <TextView
-        android:text="TextView"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:id="@+id/textView4"
-        android:textSize="24sp"
-        android:layout_marginTop="104dp"
+        android:text="Infomation  "
+        android:textStyle="normal|bold|italic"
+        android:textSize="36sp"
+        android:textAlignment="viewEnd"
+        android:textColor="?attr/colorButtonNormal"
         android:layout_alignParentTop="true"
-        android:layout_toLeftOf="@+id/button"
-        android:layout_toStartOf="@+id/button" />
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true" />
 
 </RelativeLayout>

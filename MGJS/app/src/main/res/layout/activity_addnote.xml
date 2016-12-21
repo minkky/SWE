@@ -11,46 +11,78 @@
     tools:context="com.example.mgjs.mgjs.Add_NoteActivity">
 
     <TextView
-        android:text="Please write note what you want."
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentTop="true"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true"
-        android:id="@+id/addnote_titletextview"
-        android:textSize="24sp" />
-
-    <EditText
+        android:text="Note  "
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:inputType="text"
-        android:ems="10"
-        android:id="@+id/addnote_contentofnote"
-        android:layout_below="@+id/addnote_titletextview"
+        android:id="@+id/textView3"
+        android:textStyle="normal|bold|italic"
+        android:textSize="36sp"
+        android:textAlignment="viewEnd"
+        android:textColor="?attr/colorButtonNormal"
+        android:layout_alignParentTop="true"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true" />
 
-    <Button
-        android:text="Save"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/addnote_contentofnote"
+    <View
+        android:layout_marginTop="62dp"
+        android:layout_width="fill_parent"
+        android:layout_height="2dip"
+        android:background="#A9A9A9"
+        android:layout_alignParentTop="true"
         android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true"
-        android:id="@+id/addnote_savebutton"
-        android:background="?android:attr/colorBackground"
-        android:onClick="saveNote"/>
+        android:layout_alignParentStart="true" />
 
-    <Button
-        android:text="cancel"
-        android:layout_width="wrap_content"
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:id="@+id/addnote_cancelbutton"
-        android:background="?android:attr/colorBackground"
-        android:layout_below="@+id/addnote_contentofnote"
-        android:layout_toRightOf="@+id/addnote_savebutton"
-        android:layout_toEndOf="@+id/addnote_savebutton"
-        android:layout_marginLeft="10dp"
-        android:layout_marginStart="10dp"
-        android:onClick="cancelNote"/>
+        android:layout_marginTop="85dp"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true">
+
+        <TextView
+            android:text="Please write note what you want."
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentTop="true"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true"
+            android:id="@+id/addnote_titletextview"
+            android:textSize="24sp"
+            android:textStyle="normal|bold" />
+
+        <EditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:inputType="text"
+            android:ems="10"
+            android:id="@+id/addnote_contentofnote"
+            android:layout_below="@+id/addnote_titletextview"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true" />
+
+        <LinearLayout
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <Button
+                android:text="cancel"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/addnote_cancelbutton"
+                android:background="?android:attr/colorBackground"
+                android:onClick="cancelNote"
+                android:layout_weight="1" />
+
+            <Button
+                android:text="Save"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/addnote_savebutton"
+                android:background="?android:attr/colorBackground"
+                android:onClick="saveNote"
+                android:layout_weight="1" />
+        </LinearLayout>
+    </LinearLayout>
 </RelativeLayout>

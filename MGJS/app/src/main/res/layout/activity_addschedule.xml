@@ -14,40 +14,42 @@
     <LinearLayout
         android:orientation="horizontal"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        android:weightSum="1">
 
         <TextView
             android:id="@+id/schedule_add_title"
-            android:text="Add Schedule"
-            android:textSize="20dp"
-            android:textStyle="bold"
+            android:text=" Add Schedule"
+            android:textStyle="bold|italic"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignParentLeft="true"
-            android:layout_marginTop="5dp"
-            android:layout_marginRight="10dp"
-            android:layout_marginLeft="10dp"/>
+            android:gravity="center_vertical"
+            android:layout_height="match_parent"
+            android:textSize="26dp"
+            android:layout_weight="1.1" />
 
-        <Button
-            android:id="@+id/schedule_add_cancel"
-            android:text="cancel"
-            android:textSize="10dp"
-            android:layout_width="70dp"
-            android:layout_height="wrap_content"
-            android:layout_alignParentLeft="true"
-            android:layout_marginRight="5dp"
-            android:layout_marginLeft="60dp"
-            android:onClick="cancelSchedule"/>
+        <LinearLayout
+            android:orientation="horizontal"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent">
 
-        <Button
-            android:id="@+id/schedule_add_ok"
-            android:text="ok"
-            android:textSize="10dp"
-            android:layout_width="70dp"
-            android:layout_height="wrap_content"
-            android:layout_alignParentLeft="true"
-            android:onClick="saveSchedule"
-            />
+            <Button
+                android:id="@+id/schedule_add_cancel"
+                android:text="cancel"
+                android:textSize="10dp"
+                android:layout_width="65dp"
+                android:layout_height="match_parent"
+                android:onClick="cancelSchedule"
+                android:layout_weight="1.5" />
+
+            <Button
+                android:id="@+id/schedule_add_ok"
+                android:text="save"
+                android:textSize="10dp"
+                android:layout_width="65dp"
+                android:layout_height="match_parent"
+                android:onClick="saveSchedule"
+                android:layout_weight="1" />
+        </LinearLayout>
 
     </LinearLayout>
 

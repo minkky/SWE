@@ -17,9 +17,9 @@ public class Detail_ScheduleActivity extends AppCompatActivity {
     SQLiteDatabase scheduledb;
     //ScheduleActivity에서 schedule_id값을 넘겨주어야 함!!
 
-    TextView tv_year, tv_month, tv_day, tv_content;
+    TextView tv_date, tv_content;
     int schedule_id, str_year, str_month, str_day;
-    String str_content;
+    String str_content, str_date;
     View v;
 
     @Override
@@ -36,9 +36,7 @@ public class Detail_ScheduleActivity extends AppCompatActivity {
 
         Intent intent = getIntent();
         schedule_id = intent.getExtras().getInt("id");
-        tv_year = (TextView)findViewById(R.id.schedule_year);
-        tv_month = (TextView)findViewById(R.id.schedule_month);
-        tv_day = (TextView)findViewById(R.id.schedule_day);
+        tv_date = (TextView)findViewById(R.id.schedule_date);
         tv_content = (TextView)findViewById(R.id.schedule_content);
 
         showDetailSchedule();// 여기 파라미터 추가
@@ -52,10 +50,10 @@ public class Detail_ScheduleActivity extends AppCompatActivity {
             str_month = cursor.getInt(3);
             str_day = cursor.getInt(4);
         }
+        str_date = " " + str_year + "  /  " + str_month + "  /  " + str_day;
+
         tv_content.setText(str_content);
-        tv_year.setText(str_year + " / ");
-        tv_month.setText(str_month + " / ");
-        tv_day.setText(str_day + " / ");
+        tv_date.setText(str_date);
     }
 
     public void deleteSchedule(View v){

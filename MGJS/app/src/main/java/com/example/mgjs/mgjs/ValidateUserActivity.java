@@ -24,7 +24,7 @@ public class ValidateUserActivity extends AppCompatActivity {
         setContentView(R.layout.activity_validateuser);
         Button btn = (Button)findViewById(R.id.validateuser_btn);
         password = (EditText)findViewById(R.id.validateuser_pw);
-        btn.setText("확인");
+        btn.setText("OK");
 
         logindbhelper = new LoginDBHelper(this);
         try {
@@ -54,8 +54,8 @@ public class ValidateUserActivity extends AppCompatActivity {
         }
         else {
             AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(this);
-            alertDialogBuilder.setMessage("PW를 확인해주세요");
-            alertDialogBuilder.setPositiveButton("확인",
+            alertDialogBuilder.setMessage("Please Check your Password T.T");
+            alertDialogBuilder.setPositiveButton("OK",
                     new DialogInterface.OnClickListener() {
                         @Override
                         public void onClick(DialogInterface arg0, int arg1) {
