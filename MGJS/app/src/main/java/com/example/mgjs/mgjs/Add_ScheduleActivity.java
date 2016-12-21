@@ -13,7 +13,6 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.EditText;
 import android.widget.Spinner;
-import android.widget.Toast;
 
 public class Add_ScheduleActivity extends AppCompatActivity {
 
@@ -21,6 +20,7 @@ public class Add_ScheduleActivity extends AppCompatActivity {
     SQLiteDatabase scheduledb;
     EditText scheduleContent;
     String content;
+    String str = "";
     int schedule_year, schedule_month, schedule_day;
 
     @Override
@@ -99,15 +99,7 @@ public class Add_ScheduleActivity extends AppCompatActivity {
 
         content = scheduleContent.getText().toString();
 
-        scheduledb.execSQL("INSERT INTO Schedule VALUES(null,'"+content+"',"+schedule_year+","+schedule_month+","+schedule_day+");");
-        scheduledb = sDBhelper.getReadableDatabase();
-        Cursor cursor = scheduledb.rawQuery("SELECT * FROM Schedule", null);
-        String str = "";
-        while (cursor.moveToNext()){
-            str=cursor.getString(1)+cursor.getInt(2)+cursor.getInt(3)+ cursor.getInt(4);
-        }
-
-        Toast.makeText(getApplicationContext(),str, Toast.LENGTH_LONG).show();//나중 삭제
+        InsertSchedule(content, schedule_year, schedule_month, schedule_day);
 
         AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(this);
         alertDialogBuilder.setMessage("Successfully Saved!");
@@ -122,6 +114,17 @@ public class Add_ScheduleActivity extends AppCompatActivity {
 
         AlertDialog alertDialog = alertDialogBuilder.create();
         alertDialog.show();
+    }
+
+    public void InsertSchedule(String content, int schedule_year, int schedule_month, int schedule_day) {
+        scheduledb.execSQL("INSERT INTO Schedule VALUES(null,'"+content+"',"+schedule_year+","+schedule_month+","+schedule_day+");");
+        scheduledb = sDBhelper.getReadableDatabase();
+        Cursor cursor = scheduledb.rawQuery("SELECT * FROM Schedule", null);
+        while (cursor.moveToNext()){
+            str=cursor.getString(1)+cursor.getInt(2)+cursor.getInt(3)+ cursor.getInt(4);
+        }
+
+        //Toast.makeText(getApplicationContext(),str, Toast.LENGTH_LONG).show(); 나중 삭제
     }
 
     public void cancleSchedule(View v){
