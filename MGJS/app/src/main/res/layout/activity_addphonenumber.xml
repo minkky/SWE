@@ -83,14 +83,14 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:id="@+id/button2"
-                android:onClick="yes_onClick"
+                android:onClick="savePhoneNumber"
                 android:layout_weight="1" />
 
             <Button
                 android:text="No"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:onClick="no_onClick"
+                android:onClick="canclePhoneNumber"
                 android:id="@+id/button3"
                 android:layout_weight="1" />
         </LinearLayout>
