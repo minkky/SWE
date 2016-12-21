@@ -95,33 +95,54 @@ public class Add_ScheduleActivity extends AppCompatActivity {
         daySpinner.setAdapter(dayAdapter);
     }
 
-    public void saveSchedule(View v){
+    public void saveSchedule(View v) {
+        String resultStr = "";
+        String expectedStr = "";
+        String sqlStr = "";
 
         content = scheduleContent.getText().toString();
+        expectedStr = content + schedule_year + schedule_month + schedule_day;
+        sqlStr = setSqlQuery(content, schedule_year, schedule_month, schedule_day);
 
-        scheduledb.execSQL("INSERT INTO Schedule VALUES(null,'"+content+"',"+schedule_year+","+schedule_month+","+schedule_day+");");
+        scheduledb.execSQL(sqlStr);
         scheduledb = sDBhelper.getReadableDatabase();
         Cursor cursor = scheduledb.rawQuery("SELECT * FROM Schedule", null);
-        String str = "";
-        while (cursor.moveToNext()){
-            str=cursor.getString(1)+cursor.getInt(2)+cursor.getInt(3)+ cursor.getInt(4);
+
+        while (cursor.moveToNext()) {
+            resultStr = cursor.getString(1) + cursor.getInt(2) + cursor.getInt(3) + cursor.getInt(4);
         }
 
-        Toast.makeText(getApplicationContext(),str, Toast.LENGTH_LONG).show();//나중 삭제
+        if (confirmInsertion(expectedStr, resultStr)) {
+            AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(this);
+            alertDialogBuilder.setMessage("Successfully Saved!");
+            alertDialogBuilder.setPositiveButton("Ok",
+                    new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface arg0, int arg1) {
+                            Intent intent = new Intent(Add_ScheduleActivity.this, ScheduleActivity.class);
+                            startActivity(intent);
+                        }
+                    });
 
-        AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(this);
-        alertDialogBuilder.setMessage("Successfully Saved!");
-        alertDialogBuilder.setPositiveButton("Ok",
-                new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface arg0, int arg1) {
-                        Intent intent = new Intent(Add_ScheduleActivity.this, ScheduleActivity.class);
-                        startActivity(intent);
-                    }
-                });
+            AlertDialog alertDialog = alertDialogBuilder.create();
+            alertDialog.show();
+        }
+        else
+            Toast.makeText(getApplicationContext(),"Insertion Error! Try Again",Toast.LENGTH_SHORT).show();
+    }
 
-        AlertDialog alertDialog = alertDialogBuilder.create();
-        alertDialog.show();
+    public String setSqlQuery(String content, int year, int month, int day){
+        String sqlStr = "";
+        sqlStr = "INSERT INTO Schedule VALUES(null,'" + content + "'," + year + "," + month + "," + day + ");";
+
+        return sqlStr;
+    }
+
+    public boolean confirmInsertion(String expectedStr, String resultStr) {
+        if(expectedStr.equals(resultStr))
+            return  true;
+        else
+            return false;
     }
 
     public void cancleSchedule(View v){
