@@ -19,7 +19,7 @@
         android:paddingBottom="5dp">
 
         <TextView
-            android:text="Phonebook"
+            android:text=" Phonebook"
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
             android:id="@+id/textView"

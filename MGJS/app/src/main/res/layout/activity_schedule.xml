@@ -24,7 +24,7 @@
             android:layout_alignParentLeft="true"
             android:layout_alignParentStart="true"
             android:id="@+id/schedule_titleTextView"
-            android:text="View all Schedule"
+            android:text=" View all Schedule"
             android:textSize="30sp"
             android:layout_width="240dp"
             android:layout_weight="1"

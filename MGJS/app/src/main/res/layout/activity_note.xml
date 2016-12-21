@@ -24,7 +24,7 @@
             android:layout_alignParentLeft="true"
             android:layout_alignParentStart="true"
             android:id="@+id/note_titleTextView"
-            android:text="View all Note "
+            android:text=" View all Note "
             android:textSize="30sp"
             android:gravity="center_vertical"
             android:layout_weight="1"
