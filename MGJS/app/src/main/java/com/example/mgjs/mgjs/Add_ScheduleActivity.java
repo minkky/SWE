@@ -145,7 +145,7 @@ public class Add_ScheduleActivity extends AppCompatActivity {
             return false;
     }
 
-    public void cancleSchedule(View v){
+    public void cancelSchedule(View v){
         Intent intent = new Intent(Add_ScheduleActivity.this, ScheduleActivity.class);
         startActivity(intent);
     }

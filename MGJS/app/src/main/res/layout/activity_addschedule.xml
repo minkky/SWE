@@ -29,15 +29,15 @@
             android:layout_marginLeft="10dp"/>
 
         <Button
-            android:id="@+id/schedule_add_cancle"
-            android:text="cancle"
+            android:id="@+id/schedule_add_cancel"
+            android:text="cancel"
             android:textSize="10dp"
             android:layout_width="70dp"
             android:layout_height="wrap_content"
             android:layout_alignParentLeft="true"
             android:layout_marginRight="5dp"
             android:layout_marginLeft="60dp"
-            android:onClick="cancleSchedule"/>
+            android:onClick="cancelSchedule"/>
 
         <Button
             android:id="@+id/schedule_add_ok"
