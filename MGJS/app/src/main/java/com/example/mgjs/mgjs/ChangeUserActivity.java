@@ -29,8 +29,8 @@ public class ChangeUserActivity extends AppCompatActivity {
         id = (TextView)findViewById(R.id.changeuser_id);
         pw = (TextView)findViewById(R.id.changeuser_pw);
         checkpw = (TextView)findViewById(R.id.changeuser_pwcheck);
-        yes = (Button)findViewById(R.id.changeuser_ybtn); yes.setText("확인");
-        no = (Button)findViewById(R.id.changeuser_nbtn); no.setText("취소");
+        yes = (Button)findViewById(R.id.changeuser_ybtn); yes.setText("SAVE");
+        no = (Button)findViewById(R.id.changeuser_nbtn); no.setText("CANCEL");
 
         logindbhelper = new LoginDBHelper(this);
         try {
@@ -65,8 +65,8 @@ public class ChangeUserActivity extends AppCompatActivity {
         if( checkEqualPassword(change_pw, change_checkpw) ) {
             logindb.execSQL("INSERT INTO Login VALUES(null,'"+change_id+"','"+change_pw+"');");
 
-            alertDialogBuilder.setMessage("정보가 변경되었습니다!");
-            alertDialogBuilder.setPositiveButton("확인",
+            alertDialogBuilder.setMessage("Infomation has changed Successfully!");
+            alertDialogBuilder.setPositiveButton("OK",
                     new DialogInterface.OnClickListener() {
                         @Override
                         public void onClick(DialogInterface arg0, int arg1) {
@@ -76,8 +76,8 @@ public class ChangeUserActivity extends AppCompatActivity {
                     });
         }
         else{
-            alertDialogBuilder.setMessage("PW를 확인하세요!");
-            alertDialogBuilder.setPositiveButton("확인",
+            alertDialogBuilder.setMessage("Please Check your Password T.T");
+            alertDialogBuilder.setPositiveButton("OK",
                     new DialogInterface.OnClickListener() {
                         @Override
                         public void onClick(DialogInterface arg0, int arg1) {

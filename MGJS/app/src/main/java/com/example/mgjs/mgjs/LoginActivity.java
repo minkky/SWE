@@ -61,14 +61,14 @@ public class LoginActivity extends AppCompatActivity {
 
     public void onLoginBtnClicked(View view){
         if(getSavedId().equals(loginid) && getSavedPW().equals(loginpw)){
-            Toast.makeText(getApplicationContext(),"로그인 성공",Toast.LENGTH_SHORT).show();
+            Toast.makeText(getApplicationContext(),"Login Success!",Toast.LENGTH_SHORT).show();
             Intent intent = new Intent(LoginActivity.this, MainActivity.class);
             startActivity(intent);
         }
         else {
             AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(this);
-            alertDialogBuilder.setMessage("ID/PW를 확인해주세요");
-            alertDialogBuilder.setPositiveButton("확인",
+            alertDialogBuilder.setMessage("Please Check your ID or Password T.T");
+            alertDialogBuilder.setPositiveButton("OK",
                     new DialogInterface.OnClickListener() {
                         @Override
                         public void onClick(DialogInterface arg0, int arg1) {
