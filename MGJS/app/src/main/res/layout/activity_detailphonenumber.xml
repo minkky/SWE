@@ -51,4 +51,16 @@
         </LinearLayout>
     </LinearLayout>
 
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Infomation  "
+        android:textStyle="normal|bold|italic"
+        android:textSize="36sp"
+        android:textAlignment="viewEnd"
+        android:textColor="?attr/colorButtonNormal"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true" />
+
 </RelativeLayout>
