@@ -66,7 +66,6 @@ public class Detail_PhoneNumberActivity extends AppCompatActivity {
                 new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface arg0, int arg1) {
-
                         Cursor cursor = db.rawQuery("SELECT * FROM phonebook order by name asc", null);
 
                         cursor.moveToFirst();
