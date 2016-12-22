@@ -17,8 +17,8 @@ public class PhoneBookDBHelper extends SQLiteOpenHelper {
     }
 
     public void onCreate(SQLiteDatabase db) {
-        db.execSQL("CREATE TABLE phonebook (_id INTEGER PRIMARY KEY AUTOINCREMENT," +
-                " name TEXT, phone_number TEXT);");
+        db.execSQL("CREATE TABLE phonebook (phone_id INTEGER PRIMARY KEY AUTOINCREMENT," +
+                " phone_name TEXT, phone_number TEXT);");
     }
 
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
