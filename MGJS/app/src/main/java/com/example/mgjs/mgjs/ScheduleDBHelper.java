@@ -17,11 +17,11 @@ public class ScheduleDBHelper extends SQLiteOpenHelper {
     }
 
     public void onCreate(SQLiteDatabase db) {
-        db.execSQL("CREATE TABLE Schedule ( schedule_id INTEGER PRIMARY KEY" + " AUTOINCREMENT, schedule_content TEXT, schedule_year INTEGER, schedule_month INTEGER, schedule_day INTEGER);");
+        db.execSQL("CREATE TABLE Schedule ( schedule_id INTEGER PRIMARY KEY" + " AUTOINCREMENT, schedule_content TEXT, schedule_year INTEGER, schedule_month INTEGER, schedule_date INTEGER);");
     }
 
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
-        db.execSQL("DROP TABLE IF EXISTS Login");
+        db.execSQL("DROP TABLE IF EXISTS Schedule");
         onCreate(db);
     }
 }
