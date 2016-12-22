@@ -1,5 +1,7 @@
 package com.example.mgjs.mgjs;
 
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
@@ -16,12 +18,14 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 
 public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
     TextView schedule, phonebook, note, shortcut_id;
+    Button logoutBtn;
     LoginDBHelper logindbhelper;
     SQLiteDatabase logindb;
     String loginid;
@@ -59,6 +63,44 @@ public class MainActivity extends AppCompatActivity
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         View shortcurview = navigationView.getHeaderView(0);
         shortcut_id = (TextView)shortcurview.findViewById(R.id.shortcut_id);
+        logoutBtn = (Button)shortcurview.findViewById(R.id.logoutBtn);
+        logoutBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                AlertDialog.Builder dialog  = new AlertDialog.Builder(MainActivity.this);
+                dialog.setMessage("Do you want to logout?");
+                dialog.setNegativeButton("NO", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        ;
+                    }
+                });
+                dialog.setPositiveButton("YES", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        Intent intent = new Intent(MainActivity.this, LoginActivity.class);
+                        startActivity(intent);
+                    }
+                });
+                dialog.show();
+                /*
+                AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(getApplicationContext());
+                alertDialogBuilder.setMessage("Do you want to logout?");
+
+                alertDialogBuilder.setPositiveButton("OK",
+                        new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface arg0, int arg1) {
+                                Intent intent = new Intent(MainActivity.this, LoginActivity.class);
+                                startActivity(intent);
+                            }
+                        });
+                AlertDialog alertDialog = alertDialogBuilder.create();
+                alertDialog.show();*/
+            }
+        });
+
+
         if(shortcut_id != null)
             shortcut_id.setText(loginid);
 
