@@ -71,7 +71,7 @@ public class ScheduleActivity extends ListActivity {
     //CREATE TABLE Schedule ( _id, schedule_content , schedule_year , schedule_month , schedule_day )
     public ArrayList<HashMap<String, String>>getScheduleList(){
         SQLiteDatabase scheduleDB = scheduleDBHelper.getReadableDatabase();
-        String selectQuery = "SELECT schedule_id, schedule_content, schedule_year,schedule_month,schedule_day FROM Schedule";
+        String selectQuery = "SELECT schedule_id, schedule_content, schedule_year,schedule_month,schedule_day FROM Schedule ORDER BY schedule_year, schedule_month, schedule_day";
         ArrayList<HashMap<String, String>> scheduleList = new ArrayList<>();
 
         try {
