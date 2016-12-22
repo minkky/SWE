@@ -16,7 +16,7 @@ public class Detail_PhoneNumberActivity extends AppCompatActivity {
 
     PhoneBookDBHelper helper;
     SQLiteDatabase db;
-
+    Intent intent;
     int position;
 
     final ArrayList<String> mDatas = new ArrayList<String>();
@@ -71,8 +71,10 @@ public class Detail_PhoneNumberActivity extends AppCompatActivity {
         String str = makeDeleteSQLquery(id);
         db.execSQL(str);
         adapter.notifyDataSetChanged();
-        Intent intent = new Intent(Detail_PhoneNumberActivity.this, PhoneBookActivity.class);
-        startActivity(intent);
+        intent = new Intent();
+        intent.putExtra("data","data");
+        setResult(RESULT_OK,intent);
+        finish();
     }
 
     public String makeDeleteSQLquery(int id){
@@ -82,8 +84,7 @@ public class Detail_PhoneNumberActivity extends AppCompatActivity {
     }
 
     public void before_onclick(View v) {
-        Intent intent = new Intent(this, PhoneBookActivity.class);
-        startActivity(intent);
+        this.finish();
     }
 
 }

@@ -36,7 +36,7 @@ public class ScheduleActivity extends ListActivity {
             public void onItemClick(AdapterView<?> parent,View view, int position,long id){
                 intent = new Intent(ScheduleActivity.this, Detail_ScheduleActivity.class);
                 SQLiteDatabase scheduledb = scheduleDBHelper.getWritableDatabase();
-                Cursor cursor = scheduledb.rawQuery("SELECT schedule_id FROM Schedule", null);
+                Cursor cursor = scheduledb.rawQuery("SELECT schedule_id FROM Schedule ORDER BY  schedule_year, schedule_month, schedule_day", null);
                 if (cursor.moveToFirst()) {
                     int i = cursor.getInt(cursor.getColumnIndex("schedule_id"));
 
@@ -45,7 +45,7 @@ public class ScheduleActivity extends ListActivity {
                         j++;
                     }
                     intent.putExtra("id",i);
-                    startActivity(intent);
+                    startActivityForResult(intent,1);
                 }
             }});
     }

@@ -17,6 +17,7 @@ public class Detail_ScheduleActivity extends AppCompatActivity {
     SQLiteDatabase scheduledb;
     //ScheduleActivity에서 schedule_id값을 넘겨주어야 함!!
 
+    Intent intent;
     TextView tv_date, tv_content;
     int schedule_id, str_year, str_month, str_day;
     String str_content, str_date;
@@ -34,7 +35,7 @@ public class Detail_ScheduleActivity extends AppCompatActivity {
             scheduledb = sDBhelper.getReadableDatabase();
         }
 
-        Intent intent = getIntent();
+        intent = getIntent();
         schedule_id = intent.getExtras().getInt("id");
         tv_date = (TextView)findViewById(R.id.schedule_date);
         tv_content = (TextView)findViewById(R.id.schedule_content);
@@ -67,16 +68,18 @@ public class Detail_ScheduleActivity extends AppCompatActivity {
                         scheduledb.execSQL(deleteSql);
                         scheduledb.close();
 
-                        Intent intent = new Intent(Detail_ScheduleActivity.this, ScheduleActivity.class);
-                        startActivity(intent);
+                        intent = new Intent();
+                        intent.putExtra("data","data");
+                        setResult(RESULT_OK,intent);
+                        finish();
+
                     }
                 });
         alertDialogBuilder.setNegativeButton("No",
                 new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface arg0, int arg1) {
-                        Intent intent = new Intent(Detail_ScheduleActivity.this, ScheduleActivity.class);
-                        startActivity(intent);
+                        finish();
                     }
                 });
         AlertDialog alertDialog = alertDialogBuilder.create();

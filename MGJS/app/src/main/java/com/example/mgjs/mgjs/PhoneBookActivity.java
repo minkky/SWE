@@ -1,6 +1,6 @@
 package com.example.mgjs.mgjs;
 
-import android.app.Activity;
+import android.app.ListActivity;
 import android.content.Intent;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
@@ -9,12 +9,15 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
+
 import java.util.ArrayList;
 
-public class PhoneBookActivity extends Activity {
+public class PhoneBookActivity extends ListActivity {
     PhoneBookDBHelper helper;
     SQLiteDatabase db;
     Intent intent;
+    ListView listView;
+    ArrayList<String> mDatas = new ArrayList<String>();
    // private GoogleApiClient client;
 
     @Override
@@ -25,18 +28,8 @@ public class PhoneBookActivity extends Activity {
         helper = new PhoneBookDBHelper(this);
         db = helper.getWritableDatabase();
 
-        Cursor cursor = db.rawQuery("SELECT * FROM phonebook order by name asc", null);
-        String str = "";
-        final ArrayList<String> mDatas = new ArrayList<String>();
-
-        while (cursor.moveToNext()) {
-            str=makeStrAddingInmData(cursor.getString(1),cursor.getString(2));
-            mDatas.add(str);
-        }
-
-        ArrayAdapter adapter = new ArrayAdapter(getApplicationContext(), R.layout.activity_phonebook_items, mDatas);
-        ListView listView = (ListView) findViewById(R.id.listview);
-        listView.setAdapter(adapter);
+         listView = getListView();
+        showPhoneBook();
 
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
 
@@ -44,7 +37,7 @@ public class PhoneBookActivity extends Activity {
                 Intent intent = new Intent(PhoneBookActivity.this, Detail_PhoneNumberActivity.class);
                 intent.putExtra("detail", mDatas.get(position));
                 intent.putExtra("position", position);
-                startActivity(intent);
+                startActivityForResult(intent,1);
             }
         });
     }
@@ -57,10 +50,25 @@ public class PhoneBookActivity extends Activity {
         return str;
     }
 
+    protected void showPhoneBook(){
+        mDatas.clear();
+        Cursor cursor = db.rawQuery("SELECT * FROM phonebook order by name asc", null);
+        String str = "";
+
+        while (cursor.moveToNext()) {
+            str=makeStrAddingInmData(cursor.getString(1),cursor.getString(2));
+            mDatas.add(str);
+        }
+
+        ArrayAdapter adapter = new ArrayAdapter(getApplicationContext(), R.layout.activity_phonebook_items, mDatas);
+        listView.setAdapter(adapter);
+    }
+
 
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
+        showPhoneBook();
     }
 
     public void onAddPhoneNumberClicked(View v) {
