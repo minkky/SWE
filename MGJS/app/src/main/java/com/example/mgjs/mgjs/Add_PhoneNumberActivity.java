@@ -14,11 +14,13 @@ public class Add_PhoneNumberActivity extends AppCompatActivity {
     EditText phoneEdit;
     PhoneBookDBHelper helper;
     SQLiteDatabase db;
+    Intent intent;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_addphonenumber);
+        intent = getIntent();
 
         helper = new PhoneBookDBHelper(this);
         try {
@@ -44,13 +46,13 @@ public class Add_PhoneNumberActivity extends AppCompatActivity {
         phoneEdit.setText("");
         db.close();
 
-        Intent intent = new Intent(Add_PhoneNumberActivity.this, PhoneBookActivity.class);
-        startActivity(intent);
+        intent = new Intent();
+        intent.putExtra("data","data");
+        setResult(RESULT_OK,intent);
+        finish();
     }
 
     public void canclePhoneNumber(View v){
-        Intent intent = new Intent(this, PhoneBookActivity.class);
-        startActivity(intent);
-
+        this.finish();
     }
 }

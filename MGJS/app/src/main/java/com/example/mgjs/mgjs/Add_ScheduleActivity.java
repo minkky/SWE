@@ -17,6 +17,7 @@ import android.widget.Toast;
 
 public class Add_ScheduleActivity extends AppCompatActivity {
 
+    Intent intent;
     ScheduleDBHelper sDBhelper;
     SQLiteDatabase scheduledb;
     EditText scheduleContent;
@@ -27,6 +28,7 @@ public class Add_ScheduleActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_addschedule);
+        intent = getIntent();
 
         sDBhelper = new ScheduleDBHelper(this);
         try {
@@ -119,8 +121,11 @@ public class Add_ScheduleActivity extends AppCompatActivity {
                     new DialogInterface.OnClickListener() {
                         @Override
                         public void onClick(DialogInterface arg0, int arg1) {
-                            Intent intent = new Intent(Add_ScheduleActivity.this, ScheduleActivity.class);
-                            startActivity(intent);
+                            intent = new Intent();
+                            intent.putExtra("data","data");
+                            setResult(RESULT_OK, intent);
+                            finish();
+
                         }
                     });
 
@@ -146,7 +151,6 @@ public class Add_ScheduleActivity extends AppCompatActivity {
     }
 
     public void cancelSchedule(View v){
-        Intent intent = new Intent(Add_ScheduleActivity.this, ScheduleActivity.class);
-        startActivity(intent);
+        this.finish();
     }
 }

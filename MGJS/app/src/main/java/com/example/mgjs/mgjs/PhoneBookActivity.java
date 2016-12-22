@@ -14,7 +14,7 @@ import java.util.ArrayList;
 public class PhoneBookActivity extends Activity {
     PhoneBookDBHelper helper;
     SQLiteDatabase db;
-
+    Intent intent;
    // private GoogleApiClient client;
 
     @Override
@@ -58,9 +58,14 @@ public class PhoneBookActivity extends Activity {
     }
 
 
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+    }
+
     public void onAddPhoneNumberClicked(View v) {
-        Intent intent = new Intent(PhoneBookActivity.this, Add_PhoneNumberActivity.class);
-        startActivity(intent);
+        intent = new Intent(PhoneBookActivity.this, Add_PhoneNumberActivity.class);
+        startActivityForResult(intent,1);
     }
 }
 

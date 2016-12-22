@@ -47,12 +47,18 @@ public class ScheduleActivity extends ListActivity {
                     intent.putExtra("id",i);
                     startActivity(intent);
                 }
-        }});
+            }});
     }
 
-   public void onAddScheduleClicked(View view){
-       intent = new Intent(ScheduleActivity.this, Add_ScheduleActivity.class);
-       startActivity(intent);
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        showSchedule();
+    }
+
+
+    public void onAddScheduleClicked(View view){
+        intent = new Intent(ScheduleActivity.this, Add_ScheduleActivity.class);
+        startActivityForResult(intent,1);
 
     }
 
@@ -62,9 +68,9 @@ public class ScheduleActivity extends ListActivity {
         if (scheduleList.size()!=0){
             ListAdapter scheduleListAdapter = new SimpleAdapter(ScheduleActivity.this,scheduleList,R.layout.schedule_entry,new String[]{"schedule_content","schedule_year","schedule_month","schedule_day"},
                     new int[] {R.id.schedule_content,R.id.schedule_year,R.id.schedule_month,R.id.schedule_day});
-                   setListAdapter(scheduleListAdapter);
+            setListAdapter(scheduleListAdapter);
         }else{
-            Toast.makeText(this,"schedule is not exist!",Toast.LENGTH_SHORT).show();
+            Toast.makeText(this,"schedule does not exist!",Toast.LENGTH_SHORT).show();
         }
     }
 
