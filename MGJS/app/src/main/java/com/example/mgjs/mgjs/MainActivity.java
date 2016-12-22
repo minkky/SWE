@@ -1,5 +1,6 @@
 package com.example.mgjs.mgjs;
 
+import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
@@ -21,6 +22,8 @@ import android.view.MenuItem;
 import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import java.util.ArrayList;
 
 public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
@@ -79,24 +82,11 @@ public class MainActivity extends AppCompatActivity
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
                         Intent intent = new Intent(MainActivity.this, LoginActivity.class);
+                        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
                         startActivity(intent);
                     }
                 });
                 dialog.show();
-                /*
-                AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(getApplicationContext());
-                alertDialogBuilder.setMessage("Do you want to logout?");
-
-                alertDialogBuilder.setPositiveButton("OK",
-                        new DialogInterface.OnClickListener() {
-                            @Override
-                            public void onClick(DialogInterface arg0, int arg1) {
-                                Intent intent = new Intent(MainActivity.this, LoginActivity.class);
-                                startActivity(intent);
-                            }
-                        });
-                AlertDialog alertDialog = alertDialogBuilder.create();
-                alertDialog.show();*/
             }
         });
 
