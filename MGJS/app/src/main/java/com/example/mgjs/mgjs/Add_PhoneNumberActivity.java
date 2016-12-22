@@ -52,7 +52,7 @@ public class Add_PhoneNumberActivity extends AppCompatActivity {
         finish();
     }
 
-    public void canclePhoneNumber(View v){
+    public void cancelPhoneNumber(View v){
         this.finish();
     }
 }
