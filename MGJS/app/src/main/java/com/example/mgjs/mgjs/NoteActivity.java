@@ -86,8 +86,7 @@ public class NoteActivity extends ListActivity {
                 }
             }
             noteDB.delete("note", "note_id= ?", new String[]{String.valueOf(i)});
-            android.support.v7.app.AlertDialog.Builder alertDialogBuilder = new android.support.v7.app.AlertDialog.Builder(NoteActivity.this);
-            alertDialogBuilder.setMessage("Delete Complete!");
+            Toast.makeText(this, "Deletion Complete!", Toast.LENGTH_SHORT).show();
         }
         noteDB.close();
     }

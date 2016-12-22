@@ -1,9 +1,11 @@
 package com.example.mgjs.mgjs;
 
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteException;
 import android.os.Bundle;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.Button;
@@ -37,8 +39,21 @@ public class Add_NoteActivity extends AppCompatActivity {
 
     public void saveNote(View view){
         String noteContent = addnote_contentOfNote.getText().toString();
+        if (noteContent ==null){
+            AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(this);
+            alertDialogBuilder.setMessage("Please write note content!");
+            alertDialogBuilder.setPositiveButton("Ok",
+                    new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface arg0, int arg1) {
+                        }
+                    });
 
-        if (confirmGetRightNoteContent(noteContent, addnote_contentOfNote.getText().toString())) {
+            AlertDialog alertDialog = alertDialogBuilder.create();
+            alertDialog.show();
+        }
+
+        else if (confirmGetRightNoteContent(noteContent, addnote_contentOfNote.getText().toString())) {
             noteDB.execSQL("INSERT INTO note VALUES(null, '" + noteContent + "');");
             Toast.makeText(getApplicationContext(), "Add note complete.", Toast.LENGTH_SHORT).show();
             addnote_contentOfNote.setText("");
