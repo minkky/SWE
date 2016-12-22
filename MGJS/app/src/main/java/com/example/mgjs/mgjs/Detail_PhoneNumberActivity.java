@@ -1,14 +1,16 @@
 package com.example.mgjs.mgjs;
 
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.TextView;
-import android.widget.Toast;
+
 import java.util.ArrayList;
 
 public class Detail_PhoneNumberActivity extends AppCompatActivity {
@@ -53,28 +55,51 @@ public class Detail_PhoneNumberActivity extends AppCompatActivity {
     }
 
     public void deletePhoneNumber(View v) {
-        Toast.makeText(this, ""+position, Toast.LENGTH_SHORT).show();
+        //Toast.makeText(this, ""+position, Toast.LENGTH_SHORT).show();
 
+        AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(this);
         helper = new PhoneBookDBHelper(this);
         db = helper.getWritableDatabase();
 
-        Cursor cursor = db.rawQuery("SELECT * FROM phonebook order by name asc", null);
+        alertDialogBuilder.setMessage("Are you sure to delete?");
+        alertDialogBuilder.setPositiveButton("Yes",
+                new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface arg0, int arg1) {
 
-        cursor.moveToFirst();
-        int i=0;
-        while(i < position){
-            cursor.moveToNext();
-            i++;
-        }
+                        Cursor cursor = db.rawQuery("SELECT * FROM phonebook order by name asc", null);
 
-        int id = cursor.getInt(0);
-        String str = makeDeleteSQLquery(id);
-        db.execSQL(str);
-        adapter.notifyDataSetChanged();
-        intent = new Intent();
-        intent.putExtra("data","data");
-        setResult(RESULT_OK,intent);
-        finish();
+                        cursor.moveToFirst();
+                        int i=0;
+                        while(i < position){
+                            cursor.moveToNext();
+                            i++;
+                        }
+
+                        int id = cursor.getInt(0);
+                        String str = makeDeleteSQLquery(id);
+                        db.execSQL(str);
+                        adapter.notifyDataSetChanged();
+                        intent = new Intent();
+                        intent.putExtra("data","data");
+                        setResult(RESULT_OK,intent);
+                        finish();
+                    }
+                });
+
+
+        //finish();
+
+        alertDialogBuilder.setNegativeButton("No",
+                new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface arg0, int arg1) {
+                        finish();
+                    }
+                });
+        AlertDialog alertDialog = alertDialogBuilder.create();
+        alertDialog.show();
+
     }
 
     public String makeDeleteSQLquery(int id){
