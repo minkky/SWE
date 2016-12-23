@@ -30,7 +30,7 @@ public class Detail_PhoneNumberActivity extends AppCompatActivity {
         setContentView(R.layout.activity_detailphonenumber);
         helper = new PhoneBookDBHelper(this);
         db = helper.getWritableDatabase();
-        Cursor cursor = db.rawQuery("SELECT * FROM phonebook order by name asc", null);
+        Cursor cursor = db.rawQuery("SELECT * FROM phonebook order by phone_name asc", null);
         String str = "";
 
         while (cursor.moveToNext()) {
@@ -66,7 +66,7 @@ public class Detail_PhoneNumberActivity extends AppCompatActivity {
                 new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface arg0, int arg1) {
-                        Cursor cursor = db.rawQuery("SELECT * FROM phonebook order by name asc", null);
+                        Cursor cursor = db.rawQuery("SELECT * FROM phonebook order by phone_name asc", null);
 
                         cursor.moveToFirst();
                         int i=0;
@@ -103,7 +103,7 @@ public class Detail_PhoneNumberActivity extends AppCompatActivity {
 
     public String makeDeleteSQLquery(int id){
         String str;
-        str = "DELETE FROM phonebook WHERE _id=" +id+";";
+        str = "DELETE FROM phonebook WHERE phone_id=" +id+";";
         return str;
     }
 

@@ -39,7 +39,7 @@ public class Add_NoteActivity extends AppCompatActivity {
 
     public void saveNote(View view){
         String noteContent = addnote_contentOfNote.getText().toString();
-        if (noteContent ==null){
+        if (noteContent.length() == 0){
             AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(this);
             alertDialogBuilder.setMessage("Please write note content!");
             alertDialogBuilder.setPositiveButton("Ok",

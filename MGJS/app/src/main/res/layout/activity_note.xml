@@ -38,7 +38,7 @@
             android:id="@+id/note_addbutton"
             android:elevation="0dp"
             android:textAllCaps="false"
-            android:background="#fafafa"
+            android:background="?android:attr/colorBackground"
             android:layout_above="@+id/listView2"
             android:layout_weight="1"
             android:onClick="onAddNoteClicked"/>

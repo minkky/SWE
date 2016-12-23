@@ -37,6 +37,7 @@
                 android:text="cancel"
                 android:textSize="10dp"
                 android:layout_width="65dp"
+                android:background="?android:attr/colorBackground"
                 android:layout_height="match_parent"
                 android:onClick="cancelSchedule"
                 android:layout_weight="1.5" />
@@ -47,6 +48,7 @@
                 android:textSize="10dp"
                 android:layout_width="65dp"
                 android:layout_height="match_parent"
+                android:background="?android:attr/colorBackground"
                 android:onClick="saveSchedule"
                 android:layout_weight="1" />
         </LinearLayout>

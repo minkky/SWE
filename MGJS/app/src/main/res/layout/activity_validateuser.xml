@@ -41,6 +41,7 @@
             android:layout_height="wrap_content"
             android:id="@+id/validateuser_btn"
             android:onClick="onPasswordCheckClicked"
-            android:layout_marginTop="30dp" />
+            android:layout_marginTop="30dp"
+            android:background="?android:attr/colorBackground"/>
     </LinearLayout>
 </RelativeLayout>

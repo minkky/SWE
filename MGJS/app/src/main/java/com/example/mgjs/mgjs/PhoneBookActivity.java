@@ -52,7 +52,7 @@ public class PhoneBookActivity extends ListActivity {
 
     protected void showPhoneBook(){
         mDatas.clear();
-        Cursor cursor = db.rawQuery("SELECT * FROM phonebook order by name asc", null);
+        Cursor cursor = db.rawQuery("SELECT * FROM phonebook order by phone_name asc", null);
         String str = "";
 
         while (cursor.moveToNext()) {

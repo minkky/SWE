@@ -38,6 +38,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:id="@+id/button5"
+                android:background="?android:attr/colorBackground"
                 android:onClick="before_onclick"
                 android:layout_weight="1" />
 
@@ -46,6 +47,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:id="@+id/button"
+                android:background="?android:attr/colorBackground"
                 android:onClick="deletePhoneNumber"
                 android:layout_weight="1" />
         </LinearLayout>

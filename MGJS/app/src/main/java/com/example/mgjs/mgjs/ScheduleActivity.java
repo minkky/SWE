@@ -6,6 +6,7 @@ import android.content.Intent;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ImageButton;
@@ -36,7 +37,7 @@ public class ScheduleActivity extends ListActivity {
             public void onItemClick(AdapterView<?> parent,View view, int position,long id){
                 intent = new Intent(ScheduleActivity.this, Detail_ScheduleActivity.class);
                 SQLiteDatabase scheduledb = scheduleDBHelper.getWritableDatabase();
-                Cursor cursor = scheduledb.rawQuery("SELECT schedule_id FROM Schedule ORDER BY  schedule_year, schedule_month, schedule_day", null);
+                Cursor cursor = scheduledb.rawQuery("SELECT schedule_id FROM Schedule ORDER BY  schedule_year, schedule_month, schedule_date", null);
                 if (cursor.moveToFirst()) {
                     int i = cursor.getInt(cursor.getColumnIndex("schedule_id"));
 
@@ -65,19 +66,18 @@ public class ScheduleActivity extends ListActivity {
     public void showSchedule(){
         ArrayList<HashMap<String,String>> scheduleList;
         scheduleList = getScheduleList();
-        if (scheduleList.size()!=0){
-            ListAdapter scheduleListAdapter = new SimpleAdapter(ScheduleActivity.this,scheduleList,R.layout.schedule_entry,new String[]{"schedule_content","schedule_year","schedule_month","schedule_day"},
-                    new int[] {R.id.schedule_content,R.id.schedule_year,R.id.schedule_month,R.id.schedule_day});
-            setListAdapter(scheduleListAdapter);
-        }else{
-            Toast.makeText(this,"schedule does not exist!",Toast.LENGTH_SHORT).show();
+        ListAdapter scheduleListAdapter = new SimpleAdapter(ScheduleActivity.this,scheduleList,R.layout.schedule_entry,new String[]{"schedule_content","schedule_year","schedule_month","schedule_date"},
+               new int[] {R.id.schedule_content,R.id.schedule_year,R.id.schedule_month,R.id.schedule_day});
+        setListAdapter(scheduleListAdapter);
+        if (scheduleList.size()==0) {
+            Toast.makeText(this, "schedule does not exist!", Toast.LENGTH_SHORT).show();
         }
     }
 
-    //CREATE TABLE Schedule ( _id, schedule_content , schedule_year , schedule_month , schedule_day )
+    //CREATE TABLE Schedule ( _id, schedule_content , schedule_year , schedule_month , schedule_date )
     public ArrayList<HashMap<String, String>>getScheduleList(){
         SQLiteDatabase scheduleDB = scheduleDBHelper.getReadableDatabase();
-        String selectQuery = "SELECT schedule_id, schedule_content, schedule_year,schedule_month,schedule_day FROM Schedule ORDER BY schedule_year, schedule_month, schedule_day";
+        String selectQuery = "SELECT schedule_id, schedule_content, schedule_year,schedule_month,schedule_date FROM Schedule ORDER BY schedule_year, schedule_month, schedule_date";
         ArrayList<HashMap<String, String>> scheduleList = new ArrayList<>();
 
         try {
@@ -89,13 +89,13 @@ public class ScheduleActivity extends ListActivity {
                     schedule.put("schedule_content",cursor.getString(cursor.getColumnIndex("schedule_content")));
                     schedule.put("schedule_year",cursor.getString(cursor.getColumnIndex("schedule_year")));
                     schedule.put("schedule_month",cursor.getString(cursor.getColumnIndex("schedule_month")));
-                    schedule.put("schedule_day",cursor.getString(cursor.getColumnIndex("schedule_day")));
+                    schedule.put("schedule_date",cursor.getString(cursor.getColumnIndex("schedule_date")));
                     scheduleList.add(schedule);
                 }while (cursor.moveToNext());
             }
             cursor.close();
         }catch (Exception e){
-            ;
+            Log.e("dberror",e.getMessage());
         }
 
         scheduleDB.close();
